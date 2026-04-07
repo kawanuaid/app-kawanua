@@ -3,7 +3,6 @@ import { Palette } from "lucide-react";
 import { parseColor, buildFormats, type ColorFormats } from "@/lib/colorUtils";
 import { ColorFormatCard } from "@/components/colorconverter/ColorFormatCard";
 import { ColorPreview } from "@/components/colorconverter/ColorPreview";
-import Footer from "@/components/Footer";
 
 const DEFAULT_COLOR = buildFormats(99, 102, 241, 1); // indigo-ish
 
@@ -48,88 +47,85 @@ const ColorConverterPage = () => {
   );
 
   return (
-    <>
-      <div className="min-h-screen bg-background">
-        {/* Background effects */}
-        {/* <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,hsl(160_80%_45%/0.08),transparent_60%)]" />
+    <div className="min-h-screen bg-background">
+      {/* Background effects */}
+      {/* <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,hsl(160_80%_45%/0.08),transparent_60%)]" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,hsl(200_80%_40%/0.05),transparent_50%)]" /> */}
 
-        {/* Header */}
-        <header className="border-border">
-          <div className="flex items-center justify-center p-4 relative overflow-hidden">
-            <div className="w-full max-w-4xl space-y-6">
-              <div className="text-center space-y-2">
-                <h1 className="text-4xl font-bold text-foreground tracking-tight">
-                  <span className="text-primary">Color</span> Converter
-                </h1>
-                <p className="text-muted-foreground">
-                  HEX · RGB · HSL · OKLCH · HWB · CMYK
+      {/* Header */}
+      <header className="border-border">
+        <div className="flex items-center justify-center p-4 relative overflow-hidden">
+          <div className="w-full max-w-4xl space-y-6">
+            <div className="text-center space-y-2">
+              <h1 className="text-4xl font-bold text-foreground tracking-tight">
+                <span className="text-primary">Color</span> Converter
+              </h1>
+              <p className="text-muted-foreground">
+                HEX · RGB · HSL · OKLCH · HWB · CMYK
+              </p>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main className="container mx-auto px-4 py-8">
+        {/* Input Section */}
+        <div className="mx-auto mb-8 max-w-2xl">
+          <div className="flex gap-3">
+            <div className="relative flex-1">
+              <input
+                type="text"
+                value={inputValue}
+                onChange={(e) => handleInputChange(e.target.value)}
+                placeholder="#6366F1, rgb(99 102 241), hsl(239,84%,67%), oklch(.6 .2 270), hwb(...), cmyk(...)"
+                spellCheck={false}
+                className={`w-full rounded-lg border bg-card px-4 py-3 font-mono text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 transition-all ${
+                  error
+                    ? "border-destructive/50 focus:ring-destructive/30"
+                    : "border-border focus:ring-primary/30 focus:border-primary/50"
+                }`}
+              />
+              {error && (
+                <p className="mt-1.5 text-xs text-destructive">
+                  Format tidak dikenali. Coba: #FF5733, rgb(255,87,51),
+                  hsl(11,100%,60%)
                 </p>
-              </div>
+              )}
             </div>
+            <label className="relative flex h-[46px] w-[46px] shrink-0 cursor-pointer items-center justify-center overflow-hidden rounded-lg border border-border transition-colors hover:border-primary/40">
+              <input
+                type="color"
+                value={formats.hex}
+                onChange={handleColorPicker}
+                className="absolute inset-0 h-full w-full cursor-pointer opacity-0"
+              />
+              <div
+                className="h-full w-full rounded-lg"
+                style={{ backgroundColor: formats.hex }}
+              />
+            </label>
           </div>
-        </header>
+        </div>
 
-        <main className="container mx-auto px-4 py-8">
-          {/* Input Section */}
-          <div className="mx-auto mb-8 max-w-2xl">
-            <div className="flex gap-3">
-              <div className="relative flex-1">
-                <input
-                  type="text"
-                  value={inputValue}
-                  onChange={(e) => handleInputChange(e.target.value)}
-                  placeholder="#6366F1, rgb(99 102 241), hsl(239,84%,67%), oklch(.6 .2 270), hwb(...), cmyk(...)"
-                  spellCheck={false}
-                  className={`w-full rounded-lg border bg-card px-4 py-3 font-mono text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 transition-all ${
-                    error
-                      ? "border-destructive/50 focus:ring-destructive/30"
-                      : "border-border focus:ring-primary/30 focus:border-primary/50"
-                  }`}
-                />
-                {error && (
-                  <p className="mt-1.5 text-xs text-destructive">
-                    Format tidak dikenali. Coba: #FF5733, rgb(255,87,51),
-                    hsl(11,100%,60%)
-                  </p>
-                )}
-              </div>
-              <label className="relative flex h-[46px] w-[46px] shrink-0 cursor-pointer items-center justify-center overflow-hidden rounded-lg border border-border transition-colors hover:border-primary/40">
-                <input
-                  type="color"
-                  value={formats.hex}
-                  onChange={handleColorPicker}
-                  className="absolute inset-0 h-full w-full cursor-pointer opacity-0"
-                />
-                <div
-                  className="h-full w-full rounded-lg"
-                  style={{ backgroundColor: formats.hex }}
-                />
-              </label>
-            </div>
+        {/* Preview + Formats */}
+        <div className="mx-auto max-w-4xl">
+          <div className="mb-6">
+            <ColorPreview formats={formats} />
           </div>
 
-          {/* Preview + Formats */}
-          <div className="mx-auto max-w-4xl">
-            <div className="mb-6">
-              <ColorPreview formats={formats} />
-            </div>
-
-            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
-              {FORMAT_LABELS.map(({ key, label }) => (
-                <ColorFormatCard
-                  key={key}
-                  format={key}
-                  label={label}
-                  formats={formats}
-                />
-              ))}
-            </div>
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {FORMAT_LABELS.map(({ key, label }) => (
+              <ColorFormatCard
+                key={key}
+                format={key}
+                label={label}
+                formats={formats}
+              />
+            ))}
           </div>
-        </main>
-        <Footer />
-      </div>
-    </>
+        </div>
+      </main>
+    </div>
   );
 };
 

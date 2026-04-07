@@ -4,7 +4,6 @@ import { Switch } from "@/components/ui/switch";
 import { Button } from "@/components/ui/button";
 import { Copy, Check, RefreshCw, Shield, ShieldCheck } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-import Footer from "../Footer";
 
 const AMBIGUOUS_CHARS = "0O1lI|`";
 
@@ -148,142 +147,139 @@ export default function PasswordGenerator() {
   ];
 
   return (
-    <>
-      <div className="min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
-        {/* Background effects */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,hsl(160_80%_45%/0.08),transparent_60%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,hsl(200_80%_40%/0.05),transparent_50%)]" />
+    <div className="min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
+      {/* Background effects */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,hsl(160_80%_45%/0.08),transparent_60%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,hsl(200_80%_40%/0.05),transparent_50%)]" />
 
-        <div className="w-full max-w-lg relative z-10">
-          {/* Header */}
-          <div className="text-center mb-8">
-            <div className="inline-flex items-center gap-2 mb-3">
-              <Shield className="w-8 h-8 text-primary text-glow" />
-              <h1 className="text-3xl font-bold font-display tracking-tight text-foreground">
-                Pass<span className="text-primary text-glow">Gen</span>
-              </h1>
-            </div>
-            <p className="text-muted-foreground text-sm">
-              Buat password yang kuat dan aman
-            </p>
+      <div className="w-full max-w-lg relative z-10">
+        {/* Header */}
+        <div className="text-center mb-8">
+          <div className="inline-flex items-center gap-2 mb-3">
+            <Shield className="w-8 h-8 text-primary text-glow" />
+            <h1 className="text-3xl font-bold font-display tracking-tight text-foreground">
+              Pass<span className="text-primary text-glow">Gen</span>
+            </h1>
           </div>
-
-          {/* Main card */}
-          <div className="bg-card border border-border rounded-2xl p-6 space-y-6 glow-primary">
-            {/* Password display */}
-            <div className="bg-background border border-border rounded-xl p-4 flex items-center gap-3">
-              <code className="font-mono text-lg flex-1 text-primary break-all leading-relaxed tracking-wide">
-                {password}
-              </code>
-              <div className="flex gap-1 shrink-0">
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  onClick={copyToClipboard}
-                  className="text-muted-foreground hover:text-primary"
-                >
-                  {copied ? (
-                    <Check className="w-4 h-4" />
-                  ) : (
-                    <Copy className="w-4 h-4" />
-                  )}
-                </Button>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  onClick={generate}
-                  className="text-muted-foreground hover:text-primary"
-                >
-                  <RefreshCw className="w-4 h-4" />
-                </Button>
-              </div>
-            </div>
-
-            {/* Strength indicator */}
-            <div className="space-y-2">
-              <div className="flex items-center justify-between text-sm">
-                <span className="text-muted-foreground flex items-center gap-1.5">
-                  <ShieldCheck className="w-4 h-4" />
-                  Kekuatan
-                </span>
-                <span className="text-foreground font-medium">
-                  {strength.label}
-                </span>
-              </div>
-              <div className="flex gap-1.5">
-                {[1, 2, 3, 4, 5].map((i) => (
-                  <div
-                    key={i}
-                    className={`h-1.5 flex-1 rounded-full transition-all duration-300 ${
-                      i <= strength.score
-                        ? strengthColors[strength.score]
-                        : "bg-secondary"
-                    }`}
-                  />
-                ))}
-              </div>
-            </div>
-
-            {/* Length slider */}
-            <div className="space-y-3">
-              <div className="flex items-center justify-between">
-                <label className="text-sm text-muted-foreground">Panjang</label>
-                <span className="font-mono text-sm text-primary font-semibold bg-secondary px-2.5 py-0.5 rounded-md">
-                  {length}
-                </span>
-              </div>
-              <Slider
-                value={[length]}
-                onValueChange={handleLengthChange}
-                min={4}
-                max={64}
-                step={1}
-                className="cursor-pointer"
-              />
-              <div className="flex justify-between text-xs text-muted-foreground">
-                <span>4</span>
-                <span>64</span>
-              </div>
-            </div>
-
-            {/* Options */}
-            <div className="space-y-1">
-              {optionItems.map(({ key, label, desc }) => (
-                <div
-                  key={key}
-                  className="flex items-center justify-between py-3 px-1 rounded-lg hover:bg-secondary/50 transition-colors cursor-pointer"
-                  onClick={() => toggleOption(key)}
-                >
-                  <div className="flex items-center gap-3">
-                    <span className="text-sm text-foreground">{label}</span>
-                    <span className="font-mono text-xs text-muted-foreground bg-secondary px-2 py-0.5 rounded">
-                      {desc}
-                    </span>
-                  </div>
-                  <Switch
-                    checked={options[key]}
-                    onCheckedChange={() => toggleOption(key)}
-                  />
-                </div>
-              ))}
-            </div>
-
-            {/* Generate button */}
-            <Button
-              onClick={generate}
-              className="w-full h-12 text-base font-semibold glow-primary hover:glow-strong transition-shadow"
-            >
-              <RefreshCw className="w-4 h-4 mr-2" />
-              Generate Password
-            </Button>
-          </div>
-
-          <p className="text-center text-xs text-muted-foreground mt-4">
-            Password dibuat secara lokal di browser Anda
+          <p className="text-muted-foreground text-sm">
+            Buat password yang kuat dan aman
           </p>
         </div>
+
+        {/* Main card */}
+        <div className="bg-card border border-border rounded-2xl p-6 space-y-6 glow-primary">
+          {/* Password display */}
+          <div className="bg-background border border-border rounded-xl p-4 flex items-center gap-3">
+            <code className="font-mono text-lg flex-1 text-primary break-all leading-relaxed tracking-wide">
+              {password}
+            </code>
+            <div className="flex gap-1 shrink-0">
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={copyToClipboard}
+                className="text-muted-foreground hover:text-primary"
+              >
+                {copied ? (
+                  <Check className="w-4 h-4" />
+                ) : (
+                  <Copy className="w-4 h-4" />
+                )}
+              </Button>
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={generate}
+                className="text-muted-foreground hover:text-primary"
+              >
+                <RefreshCw className="w-4 h-4" />
+              </Button>
+            </div>
+          </div>
+
+          {/* Strength indicator */}
+          <div className="space-y-2">
+            <div className="flex items-center justify-between text-sm">
+              <span className="text-muted-foreground flex items-center gap-1.5">
+                <ShieldCheck className="w-4 h-4" />
+                Kekuatan
+              </span>
+              <span className="text-foreground font-medium">
+                {strength.label}
+              </span>
+            </div>
+            <div className="flex gap-1.5">
+              {[1, 2, 3, 4, 5].map((i) => (
+                <div
+                  key={i}
+                  className={`h-1.5 flex-1 rounded-full transition-all duration-300 ${
+                    i <= strength.score
+                      ? strengthColors[strength.score]
+                      : "bg-secondary"
+                  }`}
+                />
+              ))}
+            </div>
+          </div>
+
+          {/* Length slider */}
+          <div className="space-y-3">
+            <div className="flex items-center justify-between">
+              <label className="text-sm text-muted-foreground">Panjang</label>
+              <span className="font-mono text-sm text-primary font-semibold bg-secondary px-2.5 py-0.5 rounded-md">
+                {length}
+              </span>
+            </div>
+            <Slider
+              value={[length]}
+              onValueChange={handleLengthChange}
+              min={4}
+              max={64}
+              step={1}
+              className="cursor-pointer"
+            />
+            <div className="flex justify-between text-xs text-muted-foreground">
+              <span>4</span>
+              <span>64</span>
+            </div>
+          </div>
+
+          {/* Options */}
+          <div className="space-y-1">
+            {optionItems.map(({ key, label, desc }) => (
+              <div
+                key={key}
+                className="flex items-center justify-between py-3 px-1 rounded-lg hover:bg-secondary/50 transition-colors cursor-pointer"
+                onClick={() => toggleOption(key)}
+              >
+                <div className="flex items-center gap-3">
+                  <span className="text-sm text-foreground">{label}</span>
+                  <span className="font-mono text-xs text-muted-foreground bg-secondary px-2 py-0.5 rounded">
+                    {desc}
+                  </span>
+                </div>
+                <Switch
+                  checked={options[key]}
+                  onCheckedChange={() => toggleOption(key)}
+                />
+              </div>
+            ))}
+          </div>
+
+          {/* Generate button */}
+          <Button
+            onClick={generate}
+            className="w-full h-12 text-base font-semibold glow-primary hover:glow-strong transition-shadow"
+          >
+            <RefreshCw className="w-4 h-4 mr-2" />
+            Generate Password
+          </Button>
+        </div>
+
+        <p className="text-center text-xs text-muted-foreground mt-4">
+          Password dibuat secara lokal di browser Anda
+        </p>
       </div>
-      <Footer />
-    </>
+    </div>
   );
 }

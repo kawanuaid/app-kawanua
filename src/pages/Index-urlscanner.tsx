@@ -7,7 +7,6 @@ import VerdictCard from "@/components/urlscanner/VerdictCard";
 import VendorList from "@/components/urlscanner/VendorList";
 import MetadataSidebar from "@/components/urlscanner/MetadataSidebar";
 import type { VirusTotalResponse } from "@/types/virustotal";
-import Footer from "@/components/Footer";
 
 const API_KEY = import.meta.env.VITE_VIRUSTOTAL_API_KEY as string;
 
@@ -246,7 +245,6 @@ export default function UrlScannerPage() {
           </motion.div>
         )}
       </main>
-      <Footer />
     </div>
   );
 }

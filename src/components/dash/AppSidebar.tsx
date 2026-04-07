@@ -64,13 +64,16 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           <SidebarMenu className="gap-2">
             {data.navMain.map((item) => (
               <SidebarMenuItem key={item.title}>
-                <SidebarMenuButton asChild>
-                  <Link
+                <SidebarMenuButton asChild className="text-[10px]">
+                  {/* <Link
                     to={item.url}
-                    className="text-xs text-muted-foreground font-bold uppercase"
+                    className="text-[6px] text-muted-foreground font-bold uppercase"
                   >
                     {item.title}
-                  </Link>
+                  </Link> */}
+                  <span className="text-muted-foreground font-bold uppercase">
+                    {item.title}
+                  </span>
                 </SidebarMenuButton>
                 {item.items?.length ? (
                   <SidebarMenuSub className="ml-0 border-l-0 px-1.5">

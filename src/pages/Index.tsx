@@ -1,4 +1,5 @@
-import { AppSidebar } from "@/components/dash/app-sidebar";
+import { AppSidebar } from "@/components/dash/AppSidebar";
+import Footer from "@/components/Footer";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -30,7 +31,7 @@ export default function Page() {
             <Breadcrumb>
               <BreadcrumbList>
                 <BreadcrumbItem className="hidden md:block">
-                  <BreadcrumbLink href="#">Home</BreadcrumbLink>
+                  <BreadcrumbLink href="/">Home</BreadcrumbLink>
                 </BreadcrumbItem>
                 {/* <BreadcrumbSeparator className="hidden md:block" />
                 <BreadcrumbItem>
@@ -53,6 +54,7 @@ export default function Page() {
             <Outlet />
           </div>
         </div>
+        <Footer />
       </SidebarInset>
     </SidebarProvider>
   );

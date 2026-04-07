@@ -1,12 +1,6 @@
 import { Link } from "react-router-dom";
 import { data } from "@/lib/data";
-import {
-  ImageIcon,
-  ShieldCheck,
-  KeyRound,
-  QrCode,
-  LucideIcon,
-} from "lucide-react";
+import { KeyRound, LucideIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import {
   Card,
@@ -16,35 +10,31 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
-// Map URL path to an icon and accent color
-const appMeta: Record<
-  string,
-  { icon: LucideIcon; accent: string; description: string }
-> = {
+// Map URL path to accent color and description (icon diambil dari data.ts)
+const appMeta: Record<string, { accent: string; description: string }> = {
   "/image-optimizer": {
-    icon: ImageIcon,
     accent: "from-violet-500/20 to-purple-500/10 border-violet-500/30",
     description: "Kompres & optimalkan gambar langsung di browser.",
   },
   "/passgen": {
-    icon: KeyRound,
     accent: "from-amber-500/20 to-yellow-500/10 border-amber-500/30",
     description: "Buat password kuat & acak secara instan.",
   },
   "/passcheck": {
-    icon: ShieldCheck,
     accent: "from-emerald-500/20 to-green-500/10 border-emerald-500/30",
     description: "Cek apakah password kamu pernah bocor.",
   },
   "/qrcode": {
-    icon: QrCode,
     accent: "from-sky-500/20 to-cyan-500/10 border-sky-500/30",
     description: "Generate QR code dari teks atau URL apapun.",
+  },
+  "/color-converter": {
+    accent: "from-violet-500/20 to-purple-500/10 border-violet-500/30",
+    description: "Konversi warna antara HEX, RGB, HSL, OKLCH, HWB, CMYK.",
   },
 };
 
 const defaultMeta = {
-  icon: KeyRound,
   accent: "from-muted/50 to-muted/10 border-muted-foreground/20",
   description: "Buka aplikasi ini untuk mulai menggunakannya.",
 };
@@ -53,6 +43,7 @@ interface AppItem {
   title: string;
   url: string;
   isActive?: boolean;
+  icon?: LucideIcon;
 }
 
 export default function AppHome() {
@@ -79,7 +70,7 @@ export default function AppHome() {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {allApps.map((app) => {
           const meta = appMeta[app.url] ?? defaultMeta;
-          const Icon = meta.icon;
+          const Icon = app.icon ?? KeyRound;
 
           return (
             <Link key={app.url} to={app.url}>

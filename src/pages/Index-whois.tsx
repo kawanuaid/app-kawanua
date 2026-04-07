@@ -6,7 +6,6 @@ import { fetchDnsRecords } from "@/lib/dns-api";
 import { Globe } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "sonner";
-import Footer from "@/components/Footer";
 
 // Mock WHOIS data
 const mockWhoisData: Record<string, WhoisData> = {
@@ -129,8 +128,6 @@ const WhoisPage = () => {
           </Tabs>
         )}
       </main>
-
-      <Footer />
     </div>
   );
 };
