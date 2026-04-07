@@ -35,6 +35,7 @@ import {
 import { SidebarOptInForm } from "./sidebar-opt-in-form";
 import { Link } from "react-router-dom";
 import { data } from "@/lib/data";
+import { APP_VERSION } from "@/lib/vars";
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
@@ -51,7 +52,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                   <span className="truncate font-medium">
                     Kawanua Indo Digital
                   </span>
-                  <span className="truncate text-xs">App v0.1.0</span>
+                  <span className="truncate text-xs">App v{APP_VERSION}</span>
                 </div>
               </Link>
             </SidebarMenuButton>

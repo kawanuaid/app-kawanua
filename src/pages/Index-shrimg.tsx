@@ -3,11 +3,10 @@ import { ImageDown } from "lucide-react";
 
 const ImageOptimizerPage = () => {
   return (
-    <div
-      className="bg-background"
-      // className="min-h-screen bg-background"
-      // style={{ backgroundImage: "var(--gradient-hero)" }}
-    >
+    <div className="min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
+      {/* Background effects */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,hsl(160_80%_45%/0.08),transparent_60%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,hsl(200_80%_40%/0.05),transparent_50%)]" />
       <div className="container max-w-3xl mx-auto px-4 py-12 md:py-20">
         {/* Header */}
         <div className="text-center mb-10 space-y-3">

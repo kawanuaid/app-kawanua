@@ -108,7 +108,7 @@ export const data = {
         },
         {
           title: "Password Generator",
-          url: "#",
+          url: "/passgen",
         },
       ],
     },
@@ -122,7 +122,7 @@ export const data = {
         },
         {
           title: "QR Code Generator",
-          url: "#",
+          url: "/qrcode",
         },
       ],
     },
