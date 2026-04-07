@@ -8,6 +8,7 @@ import NotFound from "./pages/NotFound.tsx";
 import ImageOptimizerPage from "./pages/Index-shrimg.tsx";
 import QrCodePage from "./pages/Index-qrcode.tsx";
 import PassGenPage from "./pages/Index-passgen.tsx";
+import UrlScannerPage from "./pages/Index-urlscanner.tsx";
 
 const queryClient = new QueryClient();
 
@@ -22,6 +23,7 @@ const App = () => (
             <Route path="image-optimizer" element={<ImageOptimizerPage />} />
             <Route path="qrcode" element={<QrCodePage />} />
             <Route path="passgen" element={<PassGenPage />} />
+            <Route path="urlscanner" element={<UrlScannerPage />} />
           </Route>
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />

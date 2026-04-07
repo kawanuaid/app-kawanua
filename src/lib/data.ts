@@ -104,7 +104,7 @@ export const data = {
       items: [
         {
           title: "URL + IP Checker",
-          url: "#",
+          url: "/urlscanner",
         },
         {
           title: "Password Generator",
