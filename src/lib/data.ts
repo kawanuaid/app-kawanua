@@ -1,15 +1,32 @@
-import { LifeBuoy, Send, GitBranch, GitFork, FileText } from "lucide-react";
+import {
+  LifeBuoy,
+  Send,
+  GitBranch,
+  GitFork,
+  FileText,
+  QrCode,
+  Key,
+  Palette,
+  Image,
+} from "lucide-react";
 
 export const data = {
   navMain: [
     {
-      title: "Display",
+      title: "Visual",
       url: "#",
       items: [
         {
           title: "Image Optimizer",
           url: "/image-optimizer",
-          isActive: true,
+          isActive: false,
+          icon: Image,
+        },
+        {
+          title: "Color Converter",
+          url: "/color-converter",
+          isActive: false,
+          icon: Palette,
         },
       ],
     },
@@ -109,10 +126,12 @@ export const data = {
         {
           title: "Password Generator",
           url: "/passgen",
+          icon: Key,
         },
         {
           title: "Password Checker",
           url: "/passcheck",
+          icon: Key,
         },
       ],
     },
@@ -127,6 +146,7 @@ export const data = {
         {
           title: "QR Code Generator",
           url: "/qrcode",
+          icon: QrCode,
         },
       ],
     },

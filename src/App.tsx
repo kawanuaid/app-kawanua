@@ -12,6 +12,7 @@ import UrlScannerPage from "./pages/Index-urlscanner.tsx";
 import WhoisPage from "./pages/Index-whois.tsx";
 import DashboardPage from "./pages/Index-dash.tsx";
 import PassCheckPage from "./pages/Index-passcheck.tsx";
+import ColorConverterPage from "./pages/Index-colorconverter.tsx";
 
 const queryClient = new QueryClient();
 
@@ -30,6 +31,7 @@ const App = () => (
             <Route path="urlscanner" element={<UrlScannerPage />} />
             <Route path="whois" element={<WhoisPage />} />
             <Route path="passcheck" element={<PassCheckPage />} />
+            <Route path="color-converter" element={<ColorConverterPage />} />
           </Route>
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
