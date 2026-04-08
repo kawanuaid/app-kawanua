@@ -16,6 +16,7 @@ import ColorConverterPage from "./pages/IndexColorConverter.tsx";
 import BmiCalculatorPage from "./pages/IndexBmiCalculator.tsx";
 import MetaTagReviewPage from "./pages/IndexMetaTagReview.tsx";
 import Base64Page from "./pages/IndexBase64.tsx";
+import HashGenPage from "./pages/IndexHashGen.tsx";
 
 const queryClient = new QueryClient();
 
@@ -38,6 +39,7 @@ const App = () => (
             <Route path="bmi-calculator" element={<BmiCalculatorPage />} />
             <Route path="meta-tag-review" element={<MetaTagReviewPage />} />
             <Route path="base64" element={<Base64Page />} />
+            <Route path="hashgen" element={<HashGenPage />} />
           </Route>
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />

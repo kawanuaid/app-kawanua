@@ -11,6 +11,7 @@ import {
   Scale,
   Tag,
   Code,
+  Hash,
 } from "lucide-react";
 
 export const data = {
@@ -75,6 +76,11 @@ export const data = {
           title: "Base64 Studio",
           url: "/base64",
           icon: Code,
+        },
+        {
+          title: "Hash Generator",
+          url: "/hashgen",
+          icon: Hash,
         },
       ],
     },
