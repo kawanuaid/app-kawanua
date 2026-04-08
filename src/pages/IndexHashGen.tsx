@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import CryptoJS from "crypto-js";
 import { Badge } from "@/components/ui/badge";
+import HeaderApp from "@/components/HeaderApp";
 
 type HashAlgorithm =
   | "md5"
@@ -104,25 +105,13 @@ export default function HashGenPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-violet-50/30 to-indigo-50/50">
       {/* Header */}
-      <header className="border-b border-slate-200/80 bg-white/70 backdrop-blur-md sticky top-0 z-40">
-        <div className="max-w-md mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
-          <div className="text-center space-y-2">
-            <div className="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 shadow-lg shadow-indigo-200 mb-4">
-              <Hash className="h-8 w-8 text-white" />
-            </div>
-            <h1 className="text-3xl font-bold tracking-tight text-slate-900">
-              Hash Generator
-            </h1>
-            <p className="text-slate-500">
-              Membuat hash dari teks dengan mudah dan cepat
-            </p>
-            <Badge variant="secondary" className="hidden sm:inline-flex gap-2">
-              <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
-              Client-side only — no data sent
-            </Badge>
-          </div>
-        </div>
-      </header>
+      <HeaderApp
+        title="Hash Generator"
+        description="Generate hash dari teks dengan mudah dan cepat"
+        icon={<Hash className="h-8 w-8 text-white" />}
+        customCss=""
+        clientSide
+      />
 
       <main className="max-w-5xl mx-auto px-4 sm:px-6 py-8">
         {/* Input Section */}

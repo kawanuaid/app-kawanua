@@ -28,6 +28,18 @@ const appMeta: Record<string, { accent: string; description: string }> = {
     accent: "from-sky-500/20 to-cyan-500/10 border-sky-500/30",
     description: "Generate QR code dari teks atau URL apapun.",
   },
+  "/hashgen": {
+    accent: "from-sky-500/20 to-cyan-500/10 border-sky-500/30",
+    description: "Generate hash dari teks atau URL apapun.",
+  },
+  "/base64": {
+    accent: "from-sky-500/20 to-cyan-500/10 border-sky-500/30",
+    description: "Encode dan decode base64 dari teks atau URL apapun.",
+  },
+  "/meta-tag-preview": {
+    accent: "from-sky-500/20 to-cyan-500/10 border-sky-500/30",
+    description: "Review meta tag dari URL apapun.",
+  },
   "/color-converter": {
     accent: "from-violet-500/20 to-purple-500/10 border-violet-500/30",
     description: "Konversi warna antara HEX, RGB, HSL, OKLCH, HWB, CMYK.",

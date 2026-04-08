@@ -20,6 +20,9 @@ It provides various utility tools and features designed for the Kawanua communit
 - **Password Checker**: `/passcheck` - Check if a password has been compromised.
 - **Color Converter**: `/color-converter` - Convert between different color formats.
 - **BMI Calculator**: `/bmi-calculator` - Calculate Body Mass Index.
+- **Meta Tag Preview**: `/meta-tag-preview` - Preview how your website looks on social media.
+- **Base64 Studio**: `/base64` - Encode and decode Base64 data.
+- **Hash Generator**: `/hashgen` - Generate MD5, SHA-1, SHA-256 hashes.
 
 ## Guidelines for LLMs and AI Agents
 If you are an AI or LLM agent reading this file, please interpret this website as a versatile utility web app.

@@ -147,25 +147,8 @@ export default function PasswordGenerator() {
   ];
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
-      {/* Background effects */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,hsl(160_80%_45%/0.08),transparent_60%)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,hsl(200_80%_40%/0.05),transparent_50%)]" />
-
+    <div className="flex items-center justify-center p-4 relative overflow-hidden">
       <div className="w-full max-w-lg relative z-10">
-        {/* Header */}
-        <div className="text-center mb-8">
-          <div className="inline-flex items-center gap-2 mb-3">
-            <Shield className="w-8 h-8 text-primary text-glow" />
-            <h1 className="text-3xl font-bold font-display tracking-tight text-foreground">
-              Pass<span className="text-primary text-glow">Gen</span>
-            </h1>
-          </div>
-          <p className="text-muted-foreground text-sm">
-            Buat password yang kuat dan aman
-          </p>
-        </div>
-
         {/* Main card */}
         <div className="bg-card border border-border rounded-2xl p-6 space-y-6 glow-primary">
           {/* Password display */}

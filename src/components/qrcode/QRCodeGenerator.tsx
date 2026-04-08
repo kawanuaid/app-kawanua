@@ -89,7 +89,7 @@ const QRCodeGenerator = () => {
   };
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div className="container max-w-5xl mx-auto px-4 py-8 space-y-6 grid grid-cols-1 md:grid-cols-2 gap-6">
       {/* Controls */}
       <Card className="border-border bg-card">
         <CardContent className="p-6 space-y-5">

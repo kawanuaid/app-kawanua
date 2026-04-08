@@ -37,7 +37,7 @@ const App = () => (
             <Route path="passcheck" element={<PassCheckPage />} />
             <Route path="color-converter" element={<ColorConverterPage />} />
             <Route path="bmi-calculator" element={<BmiCalculatorPage />} />
-            <Route path="meta-tag-review" element={<MetaTagReviewPage />} />
+            <Route path="meta-tag-preview" element={<MetaTagReviewPage />} />
             <Route path="base64" element={<Base64Page />} />
             <Route path="hashgen" element={<HashGenPage />} />
           </Route>

@@ -82,20 +82,7 @@ export function PasswordChecker() {
   };
 
   return (
-    <div className="w-full max-w-md mx-auto space-y-6">
-      {/* Header */}
-      <div className="text-center space-y-2">
-        <div className="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 shadow-lg shadow-indigo-200 mb-4">
-          <Lock className="h-8 w-8 text-white" />
-        </div>
-        <h1 className="text-3xl font-bold tracking-tight text-slate-900">
-          Password Checker
-        </h1>
-        <p className="text-slate-500">
-          Cek keamanan password Anda dengan database HaveIBeenPwned
-        </p>
-      </div>
-
+    <div className="container max-w-xl mx-auto px-4 py-8 space-y-6">
       {/* Main Card */}
       <Card>
         <CardHeader>
@@ -200,7 +187,6 @@ export function PasswordChecker() {
           {pwnedResult.isPwned ? (
             <>
               <div className="flex items-start gap-3">
-                <XCircle className="h-5 w-5 mt-0.5 flex-shrink-0" />
                 <div className="space-y-1">
                   <p className="font-semibold">Password Anda Tidak Aman!</p>
                   <p className="text-sm">

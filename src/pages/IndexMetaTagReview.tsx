@@ -9,6 +9,7 @@ import { MetaTagList } from "@/components/metatagreview/MetaTagList";
 import { SeoScore } from "@/components/metatagreview/SeoScore";
 import { fetchMetaTags, type MetaTagData } from "@/lib/metaParser";
 import { useToast } from "@/hooks/use-toast";
+import HeaderApp from "@/components/HeaderApp";
 
 const MetaTagReviewPage = () => {
   const [url, setUrl] = useState("");
@@ -37,21 +38,13 @@ const MetaTagReviewPage = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
-      <header className="border-border">
-        <div className="flex items-center justify-center p-4 relative overflow-hidden">
-          <div className="w-full max-w-4xl space-y-6">
-            <div className="text-center space-y-2">
-              <h1 className="text-4xl font-bold text-foreground tracking-tight">
-                <span className="text-primary">Meta Tag</span> Preview
-              </h1>
-              <p className="text-muted-foreground">
-                Analisis meta tag SEO dari URL manapun
-              </p>
-            </div>
-          </div>
-        </div>
-      </header>
+      <HeaderApp
+        title="Meta Tag Preview"
+        description="Analisis meta tag SEO dari URL manapun"
+        icon={<Tag className="h-8 w-8 text-white" />}
+        customCss=""
+        clientSide={false}
+      />
 
       {/* Search */}
       <div className="container max-w-5xl mx-auto px-4 py-8">

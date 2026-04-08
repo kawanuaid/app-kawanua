@@ -3,6 +3,7 @@ import { Palette } from "lucide-react";
 import { parseColor, buildFormats, type ColorFormats } from "@/lib/colorUtils";
 import { ColorFormatCard } from "@/components/colorconverter/ColorFormatCard";
 import { ColorPreview } from "@/components/colorconverter/ColorPreview";
+import HeaderApp from "@/components/HeaderApp";
 
 const DEFAULT_COLOR = buildFormats(99, 102, 241, 1); // indigo-ish
 
@@ -53,20 +54,13 @@ const ColorConverterPage = () => {
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,hsl(200_80%_40%/0.05),transparent_50%)]" /> */}
 
       {/* Header */}
-      <header className="border-border">
-        <div className="flex items-center justify-center p-4 relative overflow-hidden">
-          <div className="w-full max-w-4xl space-y-6">
-            <div className="text-center space-y-2">
-              <h1 className="text-4xl font-bold text-foreground tracking-tight">
-                <span className="text-primary">Color</span> Converter
-              </h1>
-              <p className="text-muted-foreground">
-                HEX · RGB · HSL · OKLCH · HWB · CMYK
-              </p>
-            </div>
-          </div>
-        </div>
-      </header>
+      <HeaderApp
+        title="Color Converter"
+        description="Convert colors between different formats"
+        icon={<Palette className="h-8 w-8 text-white" />}
+        customCss=""
+        clientSide={false}
+      />
 
       <main className="container mx-auto px-4 py-8">
         {/* Input Section */}
