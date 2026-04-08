@@ -10,6 +10,7 @@ import {
   Image,
   Scale,
   Tag,
+  Code,
 } from "lucide-react";
 
 export const data = {
@@ -69,6 +70,11 @@ export const data = {
           title: "Meta Tag Preview",
           url: "/meta-tag-preview",
           icon: Tag,
+        },
+        {
+          title: "Base64 Studio",
+          url: "/base64",
+          icon: Code,
         },
       ],
     },
