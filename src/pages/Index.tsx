@@ -8,20 +8,22 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
+import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import {
   SidebarInset,
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
-import { Outlet } from "react-router-dom";
+import { LogIn } from "lucide-react";
+import { Link, Outlet } from "react-router-dom";
 
 export default function Page() {
   return (
     <SidebarProvider>
       <AppSidebar />
       <SidebarInset>
-        <header className="flex h-16 shrink-0 items-center gap-2">
+        <header className="flex h-16 shrink-0 items-center justify-between gap-2">
           <div className="flex items-center gap-2 px-4">
             <SidebarTrigger className="-ml-1" />
             <Separator
@@ -39,6 +41,52 @@ export default function Page() {
                 </BreadcrumbItem> */}
               </BreadcrumbList>
             </Breadcrumb>
+          </div>
+          <div className="flex items-center gap-2 px-4">
+            <Link
+              to="https://x.com/kawanua"
+              target="_blank"
+              className="flex items-center justify-center gap-2 bg-teal-700 hover:bg-teal-600 hover:shadow-lg transition-all duration-200 rounded-full p-2 text-white"
+            >
+              <img
+                src="https://cdn.simpleicons.org/x/fff"
+                alt="X"
+                className="h-4 w-4"
+              />
+            </Link>
+            <Link
+              to="https://github.com/kawanuaid"
+              target="_blank"
+              className="flex items-center justify-center gap-2 bg-teal-700 hover:bg-teal-600 hover:shadow-lg transition-all duration-200 rounded-full p-2 text-white"
+            >
+              <img
+                src="https://cdn.simpleicons.org/github/fff"
+                alt="facebook"
+                className="h-4 w-4"
+              />
+            </Link>
+            <Link
+              to="https://repo.kid.or.id/kawanua"
+              target="_blank"
+              className="flex items-center justify-center gap-2 bg-teal-700 hover:bg-teal-600 hover:shadow-lg transition-all duration-200 rounded-full p-2 text-white"
+            >
+              <img
+                src="https://cdn.simpleicons.org/forgejo/fff"
+                alt="forgejo"
+                className="h-4 w-4"
+              />
+            </Link>
+            <Link
+              to="https://facebook.com/kawanuaco"
+              target="_blank"
+              className="flex items-center justify-center gap-2 bg-teal-700 hover:bg-teal-600 hover:shadow-lg transition-all duration-200 rounded-full p-2 text-white"
+            >
+              <img
+                src="https://cdn.simpleicons.org/facebook/fff"
+                alt="facebook"
+                className="h-4 w-4"
+              />
+            </Link>
           </div>
         </header>
         <div className="flex flex-1 flex-col gap-4 p-4 pt-0">

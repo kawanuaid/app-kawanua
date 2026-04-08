@@ -21,7 +21,7 @@ const appMeta: Record<string, { accent: string; description: string }> = {
     description: "Buat password kuat & acak secara instan.",
   },
   "/passcheck": {
-    accent: "from-emerald-500/20 to-green-500/10 border-emerald-500/30",
+    accent: "from-amber-500/20 to-yellow-500/10 border-amber-500/30",
     description: "Cek apakah password kamu pernah bocor.",
   },
   "/qrcode": {
@@ -31,6 +31,10 @@ const appMeta: Record<string, { accent: string; description: string }> = {
   "/color-converter": {
     accent: "from-violet-500/20 to-purple-500/10 border-violet-500/30",
     description: "Konversi warna antara HEX, RGB, HSL, OKLCH, HWB, CMYK.",
+  },
+  "/bmi-calculator": {
+    accent: "from-emerald-500/20 to-green-500/10 border-emerald-500/30",
+    description: "Kalkulator BMI untuk menghitung indeks massa tubuh.",
   },
 };
 
@@ -81,10 +85,10 @@ export default function AppHome() {
                   meta.accent,
                 )}
               >
-                <div className="flex size-10 md:size-12 items-center justify-center rounded-lg bg-background/60 backdrop-blur-sm border border-border/50 shadow-sm group-hover:scale-105 transition-transform duration-200">
-                  <Icon className="size-5 text-foreground" />
+                <div className="flex w-1/6 size-12 items-center justify-center rounded-lg bg-background/60 backdrop-blur-sm border border-border/50 shadow-sm group-hover:scale-110 transition-transform duration-200">
+                  <Icon className="size-6 text-foreground" />
                 </div>
-                <CardHeader className="flex flex-col gap-0.5 p-0">
+                <CardHeader className="flex w-5/6 flex-col gap-0.5 p-0">
                   <span className="text-[10px] font-semibold uppercase tracking-widest text-muted-foreground">
                     {app.category}
                   </span>

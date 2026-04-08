@@ -64,6 +64,12 @@ export const data = {
           url: "/qrcode",
           icon: QrCode,
         },
+      ],
+    },
+    {
+      title: "Health",
+      url: "#",
+      items: [
         {
           title: "BMI Calculator",
           url: "/bmi-calculator",

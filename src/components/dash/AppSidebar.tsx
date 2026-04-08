@@ -30,14 +30,14 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           <SidebarMenuItem>
             <SidebarMenuButton size="lg" asChild>
               <Link to="/">
-                <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
-                  <Command className="size-4" />
-                </div>
+                <img
+                  src="/assets/imgs/favicon.svg"
+                  alt=""
+                  className="size-8 rounded-sm"
+                />
                 <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-medium">
-                    Kawanua Indo Digital
-                  </span>
-                  <span className="truncate text-xs">App v{APP_VERSION}</span>
+                  <span className="truncate font-bold">Kawanua ID Apps</span>
+                  <span className="truncate text-xs">v{APP_VERSION}</span>
                 </div>
               </Link>
             </SidebarMenuButton>
@@ -50,14 +50,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             {data.navMain.map((item) => (
               <SidebarMenuItem key={item.title}>
                 <SidebarMenuButton asChild className="text-[10px]">
-                  {/* <Link
-                    to={item.url}
-                    className="text-[6px] text-muted-foreground font-bold uppercase"
-                  >
-                    {item.title}
-                  </Link> */}
-                  <span className="text-muted-foreground font-bold uppercase">
-                    {item.title}
+                  <span className="text-muted-foreground uppercase">
+                    <span className="font-bold">{item.title}</span> (
+                    {item.items?.length})
                   </span>
                 </SidebarMenuButton>
                 {item.items?.length ? (
