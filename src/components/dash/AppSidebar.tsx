@@ -23,6 +23,14 @@ import { data } from "@/lib/data";
 import { APP_VERSION } from "@/lib/vars";
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const filteredData = data.navMain
+    .map((group) => ({
+      ...group,
+      items: group.items
+        ? [...group.items].sort((a, b) => a.title.localeCompare(b.title))
+        : [],
+    }))
+    .sort((a, b) => a.title.localeCompare(b.title));
   return (
     <Sidebar variant="inset" {...props}>
       <SidebarHeader>
@@ -47,7 +55,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       <SidebarContent>
         <SidebarGroup>
           <SidebarMenu className="gap-2">
-            {data.navMain.map((item) => (
+            {filteredData.map((item) => (
               <SidebarMenuItem key={item.title}>
                 <SidebarMenuButton asChild className="text-[10px]">
                   <span className="text-muted-foreground uppercase">
@@ -59,7 +67,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                   <SidebarMenuSub className="ml-0 border-l-0 px-1.5">
                     {item.items.map((item) => (
                       <SidebarMenuSubItem key={item.title}>
-                        <SidebarMenuSubButton asChild isActive={item.isActive}>
+                        <SidebarMenuSubButton asChild>
                           <Link to={item.url} className="flex items-center">
                             <span className="text-teal-500/60">
                               <item.icon className="size-4" />
