@@ -40,7 +40,7 @@ export const rdapServers: Record<string, string> = {
   // Existing and common ccTLDs
   com: "https://rdap.verisign.com/com/v1/domain/",
   net: "https://rdap.verisign.com/net/v1/domain/",
-  org: "https://rdap.org/v1/domain/",
+  org: "https://rdap.publicinterestregistry.org/rdap/domain/",
   info: "https://rdap.identitydigital.services/rdap/domain/",
   biz: "https://rdap.nic.biz/domain/",
   me: "https://rdap.nic.me/v1/domain/",
@@ -72,8 +72,6 @@ export const rdapServers: Record<string, string> = {
   nz: "https://rdap.nzrs.net.nz/v1/domain/",
   sg: "https://rdap.sgnic.sg/rdap/domain/",
   hk: "https://rdap.hkirc.hk/v1/domain/",
-
-  // Newly added and requested ccTLDs
   id: "https://rdap.pandi.id/rdap/domain/",
   io: "https://rdap.nic.io/v1/domain/",
   co: "https://rdap.nic.co/v1/domain/",
@@ -81,8 +79,6 @@ export const rdapServers: Record<string, string> = {
   cc: "https://tld-rdap.verisign.com/cc/v1/domain/",
   tw: "https://ccrdap.twnic.tw/tw/domain/",
   th: "https://rdap.thains.co.th/domain/",
-
-  // Popular new gTLDs
   xyz: "https://rdap.centralnic.com/xyz/domain/",
   tech: "https://rdap.radix.host/rdap/domain/",
   online: "https://rdap.radix.host/rdap/domain/",

@@ -15,7 +15,7 @@ import { SearchIcon } from "@/components/domainlookup/SearchIcon";
 import { LoaderIcon } from "@/components/domainlookup/LoaderIcon";
 import { lookupDomain, WhoisData, SUPPORTED_TLDS } from "@/lib/domain";
 import HeaderApp from "@/components/HeaderApp";
-import { formatDate } from "@/hooks/formatDate";
+import { formatDate, formatDateTime } from "@/hooks/formatDate";
 
 export default function DomainLookupPage() {
   const [domain, setDomain] = useState("");
@@ -280,7 +280,7 @@ export default function DomainLookupPage() {
                                     : "text-slate-700"
                                 }`}
                               >
-                                {formatDate(result.expiryDate)}
+                                {formatDateTime(result.expiryDate)}
                               </div>
                             </div>
                           )}
