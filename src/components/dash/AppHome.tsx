@@ -39,7 +39,7 @@ const appMeta: Record<string, { accent: string; description: string }> = {
     description: "Generate hash dari teks atau URL apapun.",
   },
   "/domainlookup": {
-    accent: "from-sky-500/20 to-cyan-500/10 border-sky-500/30",
+    accent: "from-pink-500/20 to-fuchsia-500/10 border-pink-500/30",
     description: "Cek ketersediaan domain dan informasi registrar.",
   },
   "/base64": {
@@ -54,9 +54,17 @@ const appMeta: Record<string, { accent: string; description: string }> = {
     accent: "from-sky-500/20 to-cyan-500/10 border-sky-500/30",
     description: "Konversi JSON ke CSV dan sebaliknya.",
   },
+  "/regex-tester": {
+    accent: "from-sky-500/20 to-cyan-500/10 border-sky-500/30",
+    description: "Uji ekspresi reguler Anda secara real-time.",
+  },
   "/filechecksum": {
     accent: "from-sky-500/20 to-cyan-500/10 border-sky-500/30",
     description: "Generate checksum dari file.",
+  },
+  "/markdown-preview": {
+    accent: "from-sky-500/20 to-cyan-500/10 border-sky-500/30",
+    description: "Tampilkan hasil markdown secara real-time.",
   },
   "/jwtdecoder": {
     accent: "from-amber-500/20 to-yellow-500/10 border-amber-500/30",

@@ -25,6 +25,7 @@ import TimestampPage from "./pages/IndexTimestamp.tsx";
 import FileChecksumPage from "./pages/IndexFileChecksum.tsx";
 import JsonCsvPage from "./pages/IndexJsonCsv.tsx";
 import RegexTesterPage from "./pages/IndexRegexTester.tsx";
+import MarkdownPreviewPage from "./pages/IndexMarkdownPreview.tsx";
 
 const queryClient = new QueryClient();
 
@@ -56,6 +57,7 @@ const App = () => (
             <Route path="filechecksum" element={<FileChecksumPage />} />
             <Route path="jsoncsv" element={<JsonCsvPage />} />
             <Route path="regex-tester" element={<RegexTesterPage />} />
+            <Route path="markdown-preview" element={<MarkdownPreviewPage />} />
           </Route>
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
