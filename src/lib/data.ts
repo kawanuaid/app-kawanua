@@ -15,6 +15,7 @@ import {
   Asterisk,
   Gauge,
   Globe,
+  Clock,
 } from "lucide-react";
 
 export const data = {
@@ -90,6 +91,11 @@ export const data = {
           title: "Domain Lookup",
           url: "/domainlookup",
           icon: Globe,
+        },
+        {
+          title: "Timestamp Converter",
+          url: "/timestamp",
+          icon: Clock,
         },
         {
           title: "QR Code Generator",
