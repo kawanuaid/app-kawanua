@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { Badge } from "./ui/badge";
 
 export default function HeaderApp({
@@ -13,25 +14,81 @@ export default function HeaderApp({
   customCss: string;
   clientSide?: boolean;
 }) {
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <header className="border-b border-slate-200/80 bg-white/70 backdrop-blur-md sticky top-0 z-40">
+    <header className="border-b border-slate-200/80 bg-white/70 backdrop-blur-md sticky top-0 z-40 transition-all duration-300">
       <div
-        className={`mx-auto px-4 sm:px-6 py-4 flex items-center justify-center ${customCss}`}
+        className={`mx-auto px-4 sm:px-6 transition-all duration-300 flex items-center justify-center ${
+          isScrolled ? "py-2" : "py-4"
+        } ${customCss}`}
       >
-        <div className="text-center space-y-2">
-          <div className="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-teal-500 to-green-600 shadow-lg shadow-teal-200 mb-4">
-            {icon}
+        <div
+          id="header-app"
+          className={`flex items-center transition-all duration-300 ${
+            isScrolled ? "flex-row gap-4" : "flex-col text-center space-y-2"
+          }`}
+        >
+          <div
+            className={`inline-flex items-center justify-center rounded-2xl bg-gradient-to-br from-teal-500 to-green-600 shadow-lg shadow-teal-200 transition-all duration-300 ${
+              isScrolled ? "h-10 w-10 mb-0 shrink-0" : "h-16 w-16 mb-4"
+            }`}
+          >
+            <div className={`flex items-center justify-center transition-all duration-300 ${isScrolled ? "scale-[0.65]" : "scale-100"}`}>
+              {icon}
+            </div>
           </div>
-          <h1 className="text-3xl font-bold tracking-tight text-slate-900">
-            {title}
-          </h1>
-          <p className="text-slate-500">{description}</p>
-          {clientSide && (
-            <Badge variant="secondary" className="hidden sm:inline-flex gap-2">
-              <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
-              Client-side only — no data sent
-            </Badge>
-          )}
+          <div
+            className={`flex flex-col transition-all duration-300 ${
+              isScrolled
+                ? "items-start text-left space-y-0"
+                : "items-center text-center space-y-2"
+            }`}
+          >
+            <div className="flex items-center gap-3">
+              <h1
+                className={`font-bold tracking-tight text-slate-900 transition-all duration-300 ${
+                  isScrolled ? "text-xl" : "text-3xl"
+                }`}
+              >
+                {title}
+              </h1>
+              {clientSide && isScrolled && (
+                 <Badge
+                   variant="secondary"
+                   className="hidden sm:inline-flex gap-2 shrink-0"
+                 >
+                   <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                   Client-side only
+                 </Badge>
+              )}
+            </div>
+            
+            <p
+              className={`text-slate-500 transition-all duration-300 ${
+                isScrolled ? "hidden" : "block"
+              }`}
+            >
+              {description}
+            </p>
+            {clientSide && !isScrolled && (
+              <Badge
+                variant="secondary"
+                className="hidden sm:inline-flex gap-2"
+              >
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                Client-side only — no data sent
+              </Badge>
+            )}
+          </div>
         </div>
       </div>
     </header>

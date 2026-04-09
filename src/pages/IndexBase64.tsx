@@ -11,8 +11,8 @@ import {
   AlertCircle,
   Info,
   FileText,
-  Zap,
   RefreshCw,
+  Braces,
 } from "lucide-react";
 
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
@@ -232,7 +232,7 @@ export default function Base64Page() {
         <HeaderApp
           title="Base64 Encoder / Decoder"
           description="Encode dan decode data dengan Base64 dengan mudah dan cepat"
-          icon={<Zap className="h-8 w-8 text-white" />}
+          icon={<Braces className="size-10 text-white" />}
           customCss=""
           clientSide
         />

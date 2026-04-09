@@ -45,7 +45,7 @@ const PageSpeedPage = () => {
         description={
           "Analisis performa website Anda, aksesibilitas, dan SEO dalam hitungan detik."
         }
-        icon={<Gauge className="h-5 w-5 text-white" />}
+        icon={<Gauge className="size-10 text-white" />}
         customCss={""}
         clientSide={false}
       />

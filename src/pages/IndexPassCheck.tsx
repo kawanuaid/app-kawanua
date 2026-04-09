@@ -1,6 +1,6 @@
 import { PasswordChecker } from "@/components/passcheck/PasswordChecker";
 import HeaderApp from "@/components/HeaderApp";
-import { Lock } from "lucide-react";
+import { Radar } from "lucide-react";
 
 export default function PassCheckPage() {
   return (
@@ -8,7 +8,7 @@ export default function PassCheckPage() {
       <HeaderApp
         title="Password Checker"
         description="Cek keamanan password Anda"
-        icon={<Lock className="h-8 w-8 text-white" />}
+        icon={<Radar className="size-10 text-white" />}
         customCss=""
         clientSide={false}
       />

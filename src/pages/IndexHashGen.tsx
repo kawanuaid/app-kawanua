@@ -108,7 +108,7 @@ export default function HashGenPage() {
       <HeaderApp
         title="Hash Generator"
         description="Generate hash dari teks dengan mudah dan cepat"
-        icon={<Hash className="h-8 w-8 text-white" />}
+        icon={<Hash className="size-10 text-white" />}
         customCss=""
         clientSide
       />

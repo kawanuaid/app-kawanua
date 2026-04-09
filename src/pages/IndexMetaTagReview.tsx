@@ -37,14 +37,15 @@ const MetaTagReviewPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background bg-grid relative">
       <HeaderApp
         title="Meta Tag Preview"
         description="Analisis meta tag SEO dari URL manapun"
-        icon={<Tag className="h-8 w-8 text-white" />}
+        icon={<Tag className="size-10 text-white" />}
         customCss=""
         clientSide={false}
       />
+      <div className="absolute inset-0 bg-gradient-radial pointer-events-none" />
 
       {/* Search */}
       <div className="container max-w-5xl mx-auto px-4 py-8">

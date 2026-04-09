@@ -1,6 +1,6 @@
 import PasswordGenerator from "@/components/passgen/PasswordGenerator";
 import HeaderApp from "@/components/HeaderApp";
-import { Shield } from "lucide-react";
+import { RectangleEllipsis } from "lucide-react";
 
 const PassGenPage = () => {
   return (
@@ -8,7 +8,7 @@ const PassGenPage = () => {
       <HeaderApp
         title="Password Generator"
         description="Buat password yang kuat dan aman"
-        icon={<Shield className="h-8 w-8 text-white" />}
+        icon={<RectangleEllipsis className="size-10 text-white" />}
         customCss=""
         clientSide
       />

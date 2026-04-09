@@ -20,14 +20,13 @@ import {
   getTimeUntilExpiration,
 } from "@/lib/jwt";
 import {
-  Key,
-  Shield,
   Clock,
   AlertCircle,
   CheckCircle,
   Copy,
   Trash2,
   Zap,
+  Binary,
 } from "lucide-react";
 import HeaderApp from "@/components/HeaderApp";
 
@@ -60,7 +59,7 @@ export default function JwtDecoderPage() {
       <HeaderApp
         title={"JWT Decoder"}
         description={"Decode, analisis dan verifikasi JSON Web Tokens"}
-        icon={<Key className="h-5 w-5 text-white" />}
+        icon={<Binary className="size-10 text-white" />}
         customCss={""}
         clientSide
       />

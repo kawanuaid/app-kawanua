@@ -85,7 +85,7 @@ export default function DomainLookupPage() {
       <HeaderApp
         title={"Domain Lookup"}
         description={"Cek ketersediaan domain dan informasi registrar"}
-        icon={<WhoisIcon className="h-5 w-5 text-white" />}
+        icon={<WhoisIcon className="size-10 text-white" />}
         customCss={""}
       />
       <div className="absolute inset-0 bg-gradient-radial pointer-events-none" />

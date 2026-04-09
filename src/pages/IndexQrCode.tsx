@@ -8,7 +8,7 @@ const QrCodePage = () => {
       <HeaderApp
         title="QR Code Generator"
         description="Buat QR code kustom dengan warna, ukuran, dan format yang kamu inginkan"
-        icon={<QrCode className="h-8 w-8 text-white" />}
+        icon={<QrCode className="size-10 text-white" />}
         customCss=""
         clientSide={false}
       />

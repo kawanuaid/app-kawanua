@@ -198,9 +198,9 @@ export default function ColorPaletteGenerator() {
   return (
     <div className="min-h-screen bg-background bg-grid relative">
       <HeaderApp
-        title={"Color Palette Generator"}
+        title={"Color Palette Picker"}
         description={"Ekstrak palette warna dari gambar"}
-        icon={<Pipette className="w-5 h-5 text-primary-foreground" />}
+        icon={<Pipette className="size-10 text-primary-foreground" />}
         customCss={""}
         clientSide={false}
       />

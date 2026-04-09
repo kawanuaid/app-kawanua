@@ -1,17 +1,9 @@
 import { useState } from "react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
-import { Separator } from "@/components/ui/separator";
 import JsonToCsv from "@/components/jsoncsv/JsonToCsv";
 import CsvToJson from "@/components/jsoncsv/CsvToJson";
-import {
-  FileJson,
-  FileSpreadsheet,
-  ArrowLeftRight,
-  Zap,
-  Shield,
-  Globe,
-} from "lucide-react";
+import { FileJson, FileSpreadsheet, FileCog } from "lucide-react";
 import HeaderApp from "@/components/HeaderApp";
 
 export default function JsonCsvPage() {
@@ -22,7 +14,7 @@ export default function JsonCsvPage() {
       <HeaderApp
         title={"JSON ↔ CSV Converter"}
         description={"Konversi file JSON dan CSV dengan mudah"}
-        icon={<ArrowLeftRight className="size-5 text-white" />}
+        icon={<FileCog className="size-10 text-white" />}
         customCss={""}
       />
       <div className="absolute inset-0 bg-gradient-radial pointer-events-none" />

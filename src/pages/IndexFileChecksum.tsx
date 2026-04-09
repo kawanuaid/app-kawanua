@@ -10,6 +10,7 @@ import {
   Hash,
   Shield,
   FileText,
+  FileDigit,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -232,7 +233,7 @@ export default function FileChecksumPage() {
       <HeaderApp
         title={"File Checksum Generator"}
         description={"Generate MD5, SHA-1, SHA-256, SHA-384, SHA-512 hash"}
-        icon={<Hash className="h-5 w-5 text-white" />}
+        icon={<FileDigit className="size-10 text-white" />}
         customCss={""}
         clientSide
       />

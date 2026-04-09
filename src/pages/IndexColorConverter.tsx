@@ -48,19 +48,16 @@ const ColorConverterPage = () => {
   );
 
   return (
-    <div className="min-h-screen bg-background">
-      {/* Background effects */}
-      {/* <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,hsl(160_80%_45%/0.08),transparent_60%)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,hsl(200_80%_40%/0.05),transparent_50%)]" /> */}
-
+    <div className="min-h-screen bg-background bg-grid relative">
       {/* Header */}
       <HeaderApp
         title="Color Converter"
         description="Convert colors between different formats"
-        icon={<Palette className="h-8 w-8 text-white" />}
+        icon={<Palette className="size-10 text-white" />}
         customCss=""
         clientSide={false}
       />
+      <div className="absolute inset-0 bg-gradient-radial pointer-events-none" />
 
       <main className="container mx-auto px-4 py-8">
         {/* Input Section */}
