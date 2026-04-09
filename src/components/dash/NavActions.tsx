@@ -5,21 +5,24 @@ import {
   ArrowDown,
   ArrowUp,
   Bell,
+  Bug,
   Copy,
   CornerUpLeft,
   CornerUpRight,
   FileText,
+  FolderGit,
   GalleryVerticalEnd,
   GitBranch,
   GitFork,
+  GitPullRequest,
   LineChart,
-  Link,
   MoreHorizontal,
   Settings2,
   Star,
   Trash,
   Trash2,
 } from "lucide-react";
+import { Link } from "react-router-dom";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -50,19 +53,29 @@ const data = [
   //   ],
   [
     {
-      label: "Source Code",
-      url: "https://github.com/KawanuaDev/app-kawanua",
-      icon: <GitBranch />,
+      label: "Tentang Project Ini",
+      url: "https://github.com/KawanuaDev/app-kawanua/blob/main/README.md",
+      icon: <FolderGit className="size-4 text-[#00b058]" />,
     },
     {
-      label: "Ikut Kontribusi",
+      label: "Cara Kontribusi",
       url: "https://github.com/KawanuaDev/app-kawanua/blob/main/CONTRIBUTING.md",
-      icon: <GitFork />,
+      icon: <GitFork className="size-4 text-[#00b058]" />,
     },
     {
-      label: "License",
+      label: "Lapor Bug/Celah",
+      url: "https://github.com/KawanuaDev/app-kawanua/issues/new",
+      icon: <Bug className="size-4 text-[#00b058]" />,
+    },
+    {
+      label: "Ajukan Fitur",
+      url: "https://github.com/KawanuaDev/app-kawanua/issues/new",
+      icon: <GitBranch className="size-4 text-[#00b058]" />,
+    },
+    {
+      label: "Lisensi",
       url: "https://github.com/KawanuaDev/app-kawanua/blob/main/LICENSE",
-      icon: <FileText />,
+      icon: <FileText className="size-4 text-[#00b058]" />,
     },
   ],
   [
@@ -71,7 +84,7 @@ const data = [
       url: "https://github.com/kawanuaid",
       icon: (
         <img
-          src="https://cdn.simpleicons.org/github"
+          src="https://cdn.simpleicons.org/github/00b058"
           alt=""
           className="size-4"
         />
@@ -82,7 +95,7 @@ const data = [
       url: "https://repo.kid.or.id/kawanua",
       icon: (
         <img
-          src="https://cdn.simpleicons.org/forgejo"
+          src="https://cdn.simpleicons.org/forgejo/00b058"
           alt=""
           className="size-4"
         />
@@ -92,7 +105,11 @@ const data = [
       label: "X",
       url: "https://x.com/kawanua",
       icon: (
-        <img src="https://cdn.simpleicons.org/x" alt="" className="size-4" />
+        <img
+          src="https://cdn.simpleicons.org/x/00b058"
+          alt=""
+          className="size-4"
+        />
       ),
     },
     {
@@ -100,7 +117,7 @@ const data = [
       url: "https://bsky.app/profile/kawanua.id",
       icon: (
         <img
-          src="https://cdn.simpleicons.org/bluesky"
+          src="https://cdn.simpleicons.org/bluesky/00b058"
           alt=""
           className="size-4"
         />
@@ -111,7 +128,7 @@ const data = [
       url: "https://facebook.com/kawanuaco",
       icon: (
         <img
-          src="https://cdn.simpleicons.org/facebook"
+          src="https://cdn.simpleicons.org/facebook/00b058"
           alt=""
           className="size-4"
         />
@@ -166,12 +183,14 @@ export function NavActions() {
                   <SidebarGroupContent className="gap-0">
                     <SidebarMenu>
                       {group.map((item, index) => (
-                        <SidebarMenuItem key={index}>
-                          <SidebarMenuButton>
-                            {item.icon as React.ReactNode}{" "}
-                            <span>{item.label}</span>
-                          </SidebarMenuButton>
-                        </SidebarMenuItem>
+                        <Link key={index} to={item.url} target="_blank">
+                          <SidebarMenuItem>
+                            <SidebarMenuButton>
+                              {item.icon as React.ReactNode}{" "}
+                              <span>{item.label}</span>
+                            </SidebarMenuButton>
+                          </SidebarMenuItem>
+                        </Link>
                       ))}
                     </SidebarMenu>
                   </SidebarGroupContent>

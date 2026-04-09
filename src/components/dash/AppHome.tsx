@@ -18,6 +18,10 @@ const appMeta: Record<string, { accent: string; description: string }> = {
     accent: "from-violet-500/20 to-purple-500/10 border-violet-500/30",
     description: "Kompres & optimalkan gambar langsung di browser.",
   },
+  "/color-palette-picker": {
+    accent: "from-violet-500/20 to-purple-500/10 border-violet-500/30",
+    description: "Ekstrak palette warna secara mudah dan cepat dari gambar.",
+  },
   "/passgen": {
     accent: "from-amber-500/20 to-yellow-500/10 border-amber-500/30",
     description: "Buat password kuat & acak secara instan.",
@@ -104,14 +108,15 @@ interface AppItem {
 export default function AppHome() {
   const [searchQuery, setSearchQuery] = useState("");
 
-  // Flatten all navMain items into a single list
-  const allApps: (AppItem & { category: string })[] = data.navMain.flatMap(
-    (group) =>
+  // Flatten all navMain items into a single list and sort A-Z
+  const allApps: (AppItem & { category: string })[] = data.navMain
+    .flatMap((group) =>
       (group.items ?? []).map((item) => ({
         ...item,
         category: group.title,
       })),
-  );
+    )
+    .sort((a, b) => a.title.localeCompare(b.title));
 
   const filteredApps = allApps.filter((app) => {
     const searchLower = searchQuery.toLowerCase();

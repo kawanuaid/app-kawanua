@@ -1,22 +1,26 @@
 import {
-  LifeBuoy,
-  Send,
   GitBranch,
   GitFork,
   FileText,
   QrCode,
-  Key,
   Palette,
   Image,
-  Scale,
   Tag,
-  Code,
   Hash,
   Asterisk,
   Gauge,
   Globe,
   Clock,
-  CodeSquare,
+  Weight,
+  Regex,
+  Binary,
+  RectangleEllipsis,
+  FileDigit,
+  FileSearch,
+  FileCog,
+  Braces,
+  Radar,
+  Pipette,
 } from "lucide-react";
 
 export const data = {
@@ -37,6 +41,12 @@ export const data = {
           isActive: false,
           icon: Palette,
         },
+        {
+          title: "Color Palette Picker",
+          url: "/color-palette-picker",
+          isActive: false,
+          icon: Pipette,
+        },
       ],
     },
     {
@@ -50,17 +60,17 @@ export const data = {
         {
           title: "Password Generator",
           url: "/passgen",
-          icon: Key,
+          icon: RectangleEllipsis,
         },
         {
           title: "Password Checker",
           url: "/passcheck",
-          icon: Key,
+          icon: Radar,
         },
         {
           title: "JWT Decoder",
           url: "/jwtdecoder",
-          icon: Key,
+          icon: Binary,
         },
       ],
     },
@@ -86,6 +96,17 @@ export const data = {
       ],
     },
     {
+      title: "Health",
+      url: "#",
+      items: [
+        {
+          title: "BMI Calculator",
+          url: "/bmi-calculator",
+          icon: Weight,
+        },
+      ],
+    },
+    {
       title: "Utilities",
       url: "#",
       items: [
@@ -101,12 +122,12 @@ export const data = {
         {
           title: "File Checksum Generator",
           url: "/filechecksum",
-          icon: Hash,
+          icon: FileDigit,
         },
         {
           title: "JSON ↔ CSV Converter",
           url: "/jsoncsv",
-          icon: FileText,
+          icon: FileCog,
         },
         {
           title: "QR Code Generator",
@@ -116,7 +137,7 @@ export const data = {
         {
           title: "Base64 Studio",
           url: "/base64",
-          icon: Code,
+          icon: Braces,
         },
         {
           title: "Hash Generator",
@@ -131,23 +152,12 @@ export const data = {
         {
           title: "Regex Tester",
           url: "/regex-tester",
-          icon: CodeSquare,
+          icon: Regex,
         },
         {
           title: "Markdown Preview",
           url: "/markdown-preview",
-          icon: FileText,
-        },
-      ],
-    },
-    {
-      title: "Health",
-      url: "#",
-      items: [
-        {
-          title: "BMI Calculator",
-          url: "/bmi-calculator",
-          icon: Scale,
+          icon: FileSearch,
         },
       ],
     },
