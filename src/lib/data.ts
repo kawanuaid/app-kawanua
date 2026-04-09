@@ -78,6 +78,11 @@ export const data = {
           url: "/pagespeed",
           icon: Gauge,
         },
+        {
+          title: "Domain Lookup",
+          url: "/domainlookup",
+          icon: Globe,
+        },
       ],
     },
     {
@@ -88,11 +93,6 @@ export const data = {
         //   title: "WHOIS + DNS Lookup",
         //   url: "/whois",
         // },
-        {
-          title: "Domain Lookup",
-          url: "/domainlookup",
-          icon: Globe,
-        },
         {
           title: "Timestamp Converter",
           url: "/timestamp",
@@ -132,6 +132,11 @@ export const data = {
           title: "Regex Tester",
           url: "/regex-tester",
           icon: CodeSquare,
+        },
+        {
+          title: "Markdown Preview",
+          url: "/markdown-preview",
+          icon: FileText,
         },
       ],
     },
