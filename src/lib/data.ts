@@ -13,6 +13,7 @@ import {
   Code,
   Hash,
   Asterisk,
+  Gauge,
 } from "lucide-react";
 
 export const data = {
@@ -53,6 +54,27 @@ export const data = {
           url: "/passcheck",
           icon: Key,
         },
+        {
+          title: "JWT Decoder",
+          url: "/jwtdecoder",
+          icon: Key,
+        },
+      ],
+    },
+    {
+      title: "Web & Dev",
+      url: "#",
+      items: [
+        {
+          title: "Meta Tag Preview",
+          url: "/meta-tag-preview",
+          icon: Tag,
+        },
+        {
+          title: "PageSpeed Insights",
+          url: "/pagespeed",
+          icon: Gauge,
+        },
       ],
     },
     {
@@ -69,11 +91,6 @@ export const data = {
           icon: QrCode,
         },
         {
-          title: "Meta Tag Preview",
-          url: "/meta-tag-preview",
-          icon: Tag,
-        },
-        {
           title: "Base64 Studio",
           url: "/base64",
           icon: Code,
@@ -87,11 +104,6 @@ export const data = {
           title: "UUID Generator",
           url: "/uuidgen",
           icon: Asterisk,
-        },
-        {
-          title: "JWT Decoder",
-          url: "/jwtdecoder",
-          icon: Key,
         },
       ],
     },

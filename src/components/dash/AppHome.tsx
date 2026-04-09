@@ -41,12 +41,17 @@ const appMeta: Record<string, { accent: string; description: string }> = {
     description: "Encode dan decode base64 dari teks atau URL apapun.",
   },
   "/jwtdecoder": {
-    accent: "from-sky-500/20 to-cyan-500/10 border-sky-500/30",
+    accent: "from-amber-500/20 to-yellow-500/10 border-amber-500/30",
     description: "Decode, analisis dan verifikasi JSON Web Tokens.",
   },
   "/meta-tag-preview": {
     accent: "from-sky-500/20 to-cyan-500/10 border-sky-500/30",
     description: "Review meta tag dari URL apapun.",
+  },
+  "/pagespeed": {
+    accent: "from-sky-500/20 to-cyan-500/10 border-sky-500/30",
+    description:
+      "Analisis performa website Anda, aksesibilitas, dan SEO dalam hitungan detik.",
   },
   "/color-converter": {
     accent: "from-violet-500/20 to-purple-500/10 border-violet-500/30",
