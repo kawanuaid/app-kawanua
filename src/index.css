@@ -104,6 +104,46 @@ All colors MUST be HSL.
   }
 }
 
+@theme {
+  --color-background: oklch(1 0 0);
+  --color-foreground: oklch(0.145 0 0);
+  --color-card: oklch(1 0 0);
+  --color-card-foreground: oklch(0.145 0 0);
+  --color-popover: oklch(1 0 0);
+  --color-popover-foreground: oklch(0.145 0 0);
+  --color-primary: oklch(0.45 0.18 264);
+  --color-primary-foreground: oklch(0.98 0.005 264);
+  --color-secondary: oklch(0.96 0.01 264);
+  --color-secondary-foreground: oklch(0.25 0.05 264);
+  --color-muted: oklch(0.96 0.01 264);
+  --color-muted-foreground: oklch(0.55 0.03 264);
+  --color-accent: oklch(0.96 0.01 264);
+  --color-accent-foreground: oklch(0.25 0.05 264);
+  --color-destructive: oklch(0.55 0.2 27);
+  --color-destructive-foreground: oklch(0.98 0.005 27);
+  --color-border: oklch(0.9 0.01 264);
+  --color-input: oklch(0.9 0.01 264);
+  --color-ring: oklch(0.45 0.18 264);
+  --color-chart-1: oklch(0.646 0.222 41.116);
+  --color-chart-2: oklch(0.6 0.118 184.714);
+  --color-chart-3: oklch(0.398 0.07 227.392);
+  --color-chart-4: oklch(0.828 0.189 84.429);
+  --color-chart-5: oklch(0.769 0.188 70.08);
+  --color-sidebar-background: oklch(0.985 0 0);
+  --color-sidebar-foreground: oklch(0.145 0 0);
+  --color-sidebar-primary: oklch(0.45 0.18 264);
+  --color-sidebar-primary-foreground: oklch(0.98 0.005 264);
+  --color-sidebar-accent: oklch(0.96 0.01 264);
+  --color-sidebar-accent-foreground: oklch(0.25 0.05 264);
+  --color-sidebar-border: oklch(0.9 0.01 264);
+  --color-sidebar-ring: oklch(0.45 0.18 264);
+  --radius-sm: 0.25rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-2xl: 1rem;
+}
+
 @layer base {
   * {
     @apply border-border;
@@ -117,6 +157,55 @@ All colors MUST be HSL.
   code,
   .font-mono {
     font-family: "JetBrains Mono", monospace;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: oklch(0.8 0.01 264);
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: oklch(0.65 0.03 264);
+  }
+
+  /* Code block styling */
+  .code-block {
+    font-family:
+      "JetBrains Mono", "Fira Code", "Cascadia Code", "Consolas", monospace;
+    font-size: 0.8125rem;
+    line-height: 1.7;
+    tab-size: 2;
+  }
+
+  /* Tag highlighting */
+  .tag-bracket {
+    color: oklch(0.65 0.15 27);
+  }
+  .tag-name {
+    color: oklch(0.55 0.2 264);
+  }
+  .attr-name {
+    color: oklch(0.55 0.15 155);
+  }
+  .attr-value {
+    color: oklch(0.55 0.2 80);
+  }
+  .tag-content {
+    color: oklch(0.4 0 0);
+  }
+  .comment {
+    color: oklch(0.65 0.02 264);
+    font-style: italic;
   }
 }
 

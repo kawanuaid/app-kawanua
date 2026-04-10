@@ -28,6 +28,7 @@ import RegexTesterPage from "./pages/IndexRegexTester.tsx";
 import MarkdownPreviewPage from "./pages/IndexMarkdownPreview.tsx";
 import ColorPaletteGeneratorPage from "./pages/IndexColorPaletteGenerator.tsx";
 import FaviconGenPage from "./pages/IndexFaviconGen.tsx";
+import SeoMetatagGenPage from "./pages/IndexSeoMetaTag.tsx";
 
 const queryClient = new QueryClient();
 
@@ -64,6 +65,10 @@ const App = () => (
             <Route
               path="color-palette-picker"
               element={<ColorPaletteGeneratorPage />}
+            />
+            <Route
+              path="seo-metatag-generator"
+              element={<SeoMetatagGenPage />}
             />
           </Route>
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

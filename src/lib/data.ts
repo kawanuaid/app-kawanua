@@ -22,6 +22,7 @@ import {
   Radar,
   Pipette,
   BookImage,
+  Tags,
 } from "lucide-react";
 
 export const data = {
@@ -98,6 +99,11 @@ export const data = {
           title: "Favicon Generator",
           url: "/favicon-generator",
           icon: BookImage,
+        },
+        {
+          title: "SEO Meta Tag Generator",
+          url: "/seo-metatag-generator",
+          icon: Tags,
         },
       ],
     },
