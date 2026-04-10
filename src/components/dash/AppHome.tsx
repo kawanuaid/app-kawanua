@@ -22,6 +22,10 @@ const appMeta: Record<string, { accent: string; description: string }> = {
     accent: "from-violet-500/20 to-purple-500/10 border-violet-500/30",
     description: "Ekstrak palette warna secara mudah dan cepat dari gambar.",
   },
+  "/favicon-generator": {
+    accent: "from-pink-500/20 to-fuchsia-500/10 border-pink-500/30",
+    description: "Buat favicon untuk website Anda dengan mudah dan cepat.",
+  },
   "/passgen": {
     accent: "from-amber-500/20 to-yellow-500/10 border-amber-500/30",
     description: "Buat password kuat & acak secara instan.",
