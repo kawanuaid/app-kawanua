@@ -21,6 +21,7 @@ import {
   Braces,
   Radar,
   Pipette,
+  BookImage,
 } from "lucide-react";
 
 export const data = {
@@ -92,6 +93,11 @@ export const data = {
           title: "Domain Lookup",
           url: "/domainlookup",
           icon: Globe,
+        },
+        {
+          title: "Favicon Generator",
+          url: "/favicon-generator",
+          icon: BookImage,
         },
       ],
     },
