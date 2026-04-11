@@ -141,4 +141,4 @@ jobs:
       - name: "notify vercel"
         uses: "vercel/repository-dispatch/actions/status@v1"
         with:
-          name: "Vercel - app-kawanua: Build Check"
+          name: Vercel - app-kawanua: Build Check
