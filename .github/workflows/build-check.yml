@@ -1,0 +1,139 @@
+name: Build Check
+
+on:
+  push:
+    branches:
+      - "**"
+  pull_request:
+    branches:
+      - "**"
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: React Vite Build
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: latest
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Run Next.js build
+        id: build
+        run: pnpm build
+
+      - name: Create GitHub Issue on Build Failure
+        if: failure() && github.event_name == 'push'
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const { data: issues } = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              labels: ['build-failure'],
+            });
+
+            const existingIssue = issues.find(issue =>
+              issue.title.includes('🔴 Build Failed')
+            );
+
+            const commitUrl = `https://github.com/${context.repo.owner}/${context.repo.repo}/commit/${context.sha}`;
+            const runUrl = `https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+            const branch = context.ref.replace('refs/heads/', '');
+
+            const body = [
+              `## 🔴 Build Failed on \`${branch}\``,
+              ``,
+              `| Detail | Value |`,
+              `|--------|-------|`,
+              `| **Branch** | \`${branch}\` |`,
+              `| **Commit** | [\`${context.sha.slice(0, 7)}\`](${commitUrl}) |`,
+              `| **Triggered by** | @${context.actor} |`,
+              `| **Workflow Run** | [View Logs](${runUrl}) |`,
+              `| **Time** | ${new Date().toUTCString()} |`,
+              ``,
+              `### What to do`,
+              `1. Check the [workflow run logs](${runUrl}) for the full error output.`,
+              `2. Fix the build error locally by running \`pnpm build\`.`,
+              `3. Push a fix — this issue will be closed automatically once the build passes.`,
+              ``,
+              `> This issue was created automatically by the **Build Check** workflow.`,
+            ].join('\n');
+
+            if (existingIssue) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: existingIssue.number,
+                body: `### 🔄 Build still failing\n\nA new failure was detected on commit [\`${context.sha.slice(0, 7)}\`](${commitUrl}) (branch: \`${branch}\`).\n\n[View Logs](${runUrl})`,
+              });
+              console.log(`Updated existing issue #${existingIssue.number}`);
+            } else {
+              const { data: newIssue } = await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title: `🔴 Build Failed on \`${branch}\` — commit ${context.sha.slice(0, 7)}`,
+                body,
+                labels: ['build-failure'],
+              });
+              console.log(`Created new issue #${newIssue.number}: ${newIssue.html_url}`);
+            }
+
+      - name: Close Build Failure Issues on Success
+        if: success() && github.event_name == 'push'
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const { data: issues } = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              labels: ['build-failure'],
+            });
+
+            const branch = context.ref.replace('refs/heads/', '');
+            const commitUrl = `https://github.com/${context.repo.owner}/${context.repo.repo}/commit/${context.sha}`;
+            const runUrl = `https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+
+            for (const issue of issues) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                body: `### ✅ Build Fixed!\n\nThe build is now passing on branch \`${branch}\` — commit [\`${context.sha.slice(0, 7)}\`](${commitUrl}).\n\n[View Successful Run](${runUrl})\n\nClosing this issue automatically.`,
+              });
+
+              await github.rest.issues.update({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                state: 'closed',
+              });
+
+              console.log(`Closed issue #${issue.number}`);
+            }
