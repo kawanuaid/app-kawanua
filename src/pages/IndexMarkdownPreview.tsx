@@ -3,9 +3,17 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Copy, Download, RefreshCw, Eye, Pencil } from "lucide-react";
+import {
+  Copy,
+  Download,
+  RefreshCw,
+  Eye,
+  Pencil,
+  FileSearch,
+} from "lucide-react";
 import EditorPane from "@/components/markdown/EditorPane";
 import PreviewPane from "@/components/markdown/PreviewPane";
+import { HeaderHorizontal } from "@/components/HeaderApp";
 
 // Default text untuk inisialisasi
 const DEFAULT_MARKDOWN = `# Halo Dunia! 👋
@@ -66,51 +74,46 @@ export default function MarkdownPreviewPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground p-4 md:p-8 flex flex-col gap-6">
+    <div className="min-h-screen bg-background bg-grid relative">
       {/* Header */}
-      <header className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b pb-4">
-        <div>
-          <h1 className="text-3xl font-bold tracking-tight bg-gradient-to-r from-teal-600 to-emerald-600 bg-clip-text text-transparent">
-            Markdown Previewer
-          </h1>
-          <p className="text-muted-foreground text-sm mt-1">
-            Tampilkan hasil markdown secara real-time.
-          </p>
-        </div>
+      <HeaderHorizontal
+        title={"Markdown Previewer"}
+        description={"Tampilkan hasil markdown secara real-time."}
+        icon={<FileSearch className="w-5 h-5 text-white" />}
+      >
+        <span className="text-xs font-mono bg-secondary px-2 py-1 rounded text-secondary-foreground mr-2 hidden sm:inline-block">
+          {wordCount} words
+        </span>
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={handleCopy}
+          title="Copy Markdown"
+        >
+          <Copy className="w-4 h-4" /> Salin
+        </Button>
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={handleDownload}
+          title="Download .md"
+        >
+          <Download className="w-4 h-4" /> Simpan
+        </Button>
+        <Button
+          variant="destructive"
+          size="sm"
+          onClick={handleClear}
+          title="Clear All"
+        >
+          <RefreshCw className="w-4 h-4" /> Hapus
+        </Button>
+      </HeaderHorizontal>
 
-        <div className="flex items-center gap-2">
-          <span className="text-xs font-mono bg-secondary px-2 py-1 rounded text-secondary-foreground mr-2 hidden sm:inline-block">
-            {wordCount} words
-          </span>
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={handleCopy}
-            title="Copy Markdown"
-          >
-            <Copy className="w-4 h-4" /> Salin
-          </Button>
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={handleDownload}
-            title="Download .md"
-          >
-            <Download className="w-4 h-4" /> Simpan
-          </Button>
-          <Button
-            variant="destructive"
-            size="sm"
-            onClick={handleClear}
-            title="Clear All"
-          >
-            <RefreshCw className="w-4 h-4" /> Hapus
-          </Button>
-        </div>
-      </header>
+      <div className="absolute inset-0 bg-gradient-radial pointer-events-none" />
 
       {/* Main Content Area */}
-      <main className="flex-1 grid grid-cols-1 lg:grid-cols-2 gap-6 h-[calc(100vh-180px)] min-h-[500px]">
+      <main className="flex-1 grid grid-cols-1 lg:grid-cols-2 gap-6 h-[calc(100vh-180px)] min-h-[500px] mt-10 px-4">
         {/* Mobile Tabs Wrapper */}
         <div className="lg:hidden">
           <Tabs defaultValue="edit" className="w-full h-full flex flex-col">

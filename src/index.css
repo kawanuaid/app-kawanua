@@ -19,16 +19,16 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 210 30% 10%;
 
-    --primary: 170 80% 30%;
+    --primary: 221.2 89.3% 70.6%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 170 30% 92%;
-    --secondary-foreground: 170 80% 20%;
+    --secondary: 219 47.6% 91.8%;
+    --secondary-foreground: 224.7 67.1% 33.3%;
 
     --muted: 210 15% 93%;
     --muted-foreground: 210 10% 50%;
 
-    --accent: 170 60% 45%;
+    --accent: 225.4 84% 49%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
@@ -36,7 +36,7 @@ All colors MUST be HSL.
 
     --border: 210 20% 88%;
     --input: 210 20% 88%;
-    --ring: 170 80% 30%;
+    --ring: 221.2 89.3% 70.6%;
 
     --radius: 0.75rem;
 
@@ -60,8 +60,8 @@ All colors MUST be HSL.
       hsl(210, 20%, 98%) 0%,
       hsl(170, 30%, 94%) 100%
     );
-    --shadow-card: 0 4px 24px -4px hsl(170 80% 30% / 0.08);
-    --shadow-drop: 0 8px 32px -8px hsl(170 80% 30% / 0.15);
+    --shadow-card: 0 4px 24px -4px hsl(221.2 89.3% 70.6% / 0.08);
+    --shadow-drop: 0 8px 32px -8px hsl(221.2 89.3% 70.6% / 0.15);
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -71,6 +71,8 @@ All colors MUST be HSL.
     --sidebar-accent-foreground: 240 5.9% 10%;
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 217.2 91.2% 59.8%;
+
+    --box-corner-width: 7rem;
   }
 
   .dark {
@@ -80,19 +82,19 @@ All colors MUST be HSL.
     --card-foreground: 210 20% 95%;
     --popover: 210 25% 12%;
     --popover-foreground: 210 20% 95%;
-    --primary: 170 70% 45%;
+    --primary: 221.2 89.3% 70.6%;
     --primary-foreground: 210 30% 8%;
     --secondary: 210 20% 18%;
     --secondary-foreground: 210 20% 90%;
     --muted: 210 20% 18%;
     --muted-foreground: 210 15% 55%;
-    --accent: 170 60% 40%;
+    --accent: 225.4 84% 49%;
     --accent-foreground: 0 0% 100%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
     --border: 210 20% 20%;
     --input: 210 20% 20%;
-    --ring: 170 70% 45%;
+    --ring: 221.2 89.3% 70.6%;
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -206,6 +208,35 @@ All colors MUST be HSL.
   .comment {
     color: oklch(0.65 0.02 264);
     font-style: italic;
+  }
+
+  .link-card {
+    display: block;
+  }
+
+  [class^="card-"]::before,
+  [class^="card-"]::after {
+    content: "";
+    display: block;
+    background-color: hsl(var(--primary));
+    width: 5.8rem;
+    height: 5.8rem;
+    position: absolute;
+    top: calc(-0.45 * var(--box-corner-width) + 0.25rem - 0.5px);
+    right: calc(-0.45 * var(--box-corner-width) + 0.25rem - 0.5px);
+    border-radius: 0.7rem;
+    transform: rotateZ(45deg);
+    z-index: 1;
+  }
+
+  [class^="card-"]::after {
+    z-index: 0;
+    background-color: hsl(var(--muted) / 1);
+    top: calc(-0.6 * var(--box-corner-width) - 2.25rem);
+    right: calc(-0.6 * var(--box-corner-width) - 2.25rem);
+    width: calc(var(--box-corner-width) * 1.5);
+    height: calc(var(--box-corner-width) * 1.5);
+    border-bottom: 1px solid hsl(var(--primary));
   }
 }
 

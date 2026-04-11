@@ -18,8 +18,10 @@ import {
   CheckCircle2,
   Copy,
   RefreshCw,
+  Regex,
   Trash2,
 } from "lucide-react";
+import { HeaderHorizontal } from "@/components/HeaderApp";
 
 // Helper untuk highlight text
 const HighlightedText = ({
@@ -115,30 +117,27 @@ export default function RegexTesterPage() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 p-4 md:p-8 font-sans text-slate-900 dark:text-slate-50">
-      <div className="max-w-5xl mx-auto space-y-6">
-        {/* Header */}
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-3xl font-bold tracking-tight bg-gradient-to-r from-teal-600 to-emerald-600 bg-clip-text text-transparent">
-              Regex Tester
-            </h1>
-            <p className="text-slate-500 dark:text-slate-400 mt-1">
-              Uji ekspresi reguler Anda secara real-time.
-            </p>
-          </div>
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => {
-              setPattern("");
-              setTestString("");
-            }}
-          >
-            <Trash2 className="w-4 h-4 mr-2" /> Reset
-          </Button>
-        </div>
+    <div className="min-h-screen bg-background bg-grid relative">
+      <HeaderHorizontal
+        title={"Regex Tester"}
+        description={"Uji ekspresi reguler Anda secara real-time."}
+        icon={<Regex className="w-5 h-5 text-white" />}
+      >
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() => {
+            setPattern("");
+            setTestString("");
+          }}
+        >
+          <Trash2 className="w-4 h-4 mr-2" /> Reset
+        </Button>
+      </HeaderHorizontal>
 
+      <div className="absolute inset-0 bg-gradient-radial pointer-events-none" />
+
+      <div className="max-w-5xl mx-auto space-y-6 mt-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
           {/* Kolom Kiri: Input Controls */}
           <div className="lg:col-span-5 space-y-6">

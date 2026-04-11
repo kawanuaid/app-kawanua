@@ -39,7 +39,7 @@ import SerpPreview from "@/components/seometataggen/SerpPreview";
 import SocialPreview from "@/components/seometataggen/SocialPreview";
 import highlightCode from "@/components/seometataggen/HighlightedCode";
 import generateMetaTags from "@/components/seometataggen/GenerateMetaTags";
-import HeaderApp from "@/components/HeaderApp";
+import HeaderApp, { HeaderHorizontal } from "@/components/HeaderApp";
 import TipsCard from "@/components/seometataggen/TipsCard";
 import TwitterIcon from "@/components/seometataggen/TwitterIcon";
 
@@ -200,52 +200,38 @@ export default function SeoMetatagGenPage() {
   return (
     <div className="min-h-screen bg-background bg-grid relative">
       {/* Header */}
-      <header className="border-b border-border/50 bg-white/80 backdrop-blur-xl sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-indigo-400 flex items-center justify-center shadow-lg shadow-primary/25">
-                <Tags className="w-5 h-5 text-white" />
-              </div>
-              <div>
-                <h1 className="text-xl font-bold text-foreground tracking-tight">
-                  SEO Meta Tag Generator
-                </h1>
-                <p className="text-xs text-muted-foreground">
-                  Buat meta tag yang optimal untuk SEO website Anda dengan mudah
-                  dan cepat.
-                </p>
-              </div>
-            </div>
-            <div className="flex items-center gap-2">
-              <Badge
-                variant="secondary"
-                className="hidden sm:flex items-center gap-1"
-              >
-                <Hash className="w-3 h-3" />
-                {filledCount} fields filled
-              </Badge>
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={handleAutoFillOgTwitter}
-                className="hidden sm:flex items-center gap-1.5"
-              >
-                <Sparkles className="w-3.5 h-3.5" />
-                Auto-fill OG & Twitter
-              </Button>
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={handleReset}
-                title="Reset all fields"
-              >
-                <RotateCcw className="w-4 h-4" />
-              </Button>
-            </div>
-          </div>
-        </div>
-      </header>
+      <HeaderHorizontal
+        title={"SEO Meta Tag Generator"}
+        description={
+          "Buat meta tag yang optimal untuk SEO website Anda dengan mudah dan cepat."
+        }
+        icon={<Tags className="w-5 h-5 text-white" />}
+      >
+        <Badge
+          variant="secondary"
+          className="hidden sm:flex items-center gap-1"
+        >
+          <Hash className="w-3 h-3" />
+          {filledCount} fields filled
+        </Badge>
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={handleAutoFillOgTwitter}
+          className="hidden sm:flex items-center gap-1.5"
+        >
+          <Sparkles className="w-3.5 h-3.5" />
+          Auto-fill OG & Twitter
+        </Button>
+        <Button
+          variant="ghost"
+          size="icon"
+          onClick={handleReset}
+          title="Reset all fields"
+        >
+          <RotateCcw className="w-4 h-4" />
+        </Button>
+      </HeaderHorizontal>
 
       <div className="absolute inset-0 bg-gradient-radial pointer-events-none" />
 

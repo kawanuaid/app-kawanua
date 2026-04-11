@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Badge } from "./ui/badge";
 
 export default function HeaderApp({
@@ -38,11 +38,13 @@ export default function HeaderApp({
           }`}
         >
           <div
-            className={`inline-flex items-center justify-center rounded-2xl bg-gradient-to-br from-teal-500 to-green-600 shadow-lg shadow-teal-200 transition-all duration-300 ${
+            className={`inline-flex items-center justify-center rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 shadow-lg shadow-blue-200 transition-all duration-300 ${
               isScrolled ? "h-10 w-10 mb-0 shrink-0" : "h-16 w-16 mb-4"
             }`}
           >
-            <div className={`flex items-center justify-center transition-all duration-300 ${isScrolled ? "scale-[0.65]" : "scale-100"}`}>
+            <div
+              className={`flex items-center justify-center transition-all duration-300 ${isScrolled ? "scale-[0.65]" : "scale-100"}`}
+            >
               {icon}
             </div>
           </div>
@@ -62,16 +64,16 @@ export default function HeaderApp({
                 {title}
               </h1>
               {clientSide && isScrolled && (
-                 <Badge
-                   variant="secondary"
-                   className="hidden sm:inline-flex gap-2 shrink-0"
-                 >
-                   <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                   Client-side only
-                 </Badge>
+                <Badge
+                  variant="secondary"
+                  className="hidden sm:inline-flex gap-2 shrink-0 text-gray-500"
+                >
+                  <span className="h-1.5 w-1.5 rounded-full bg-green-400 animate-pulse" />
+                  Client-side only
+                </Badge>
               )}
             </div>
-            
+
             <p
               className={`text-slate-500 transition-all duration-300 ${
                 isScrolled ? "hidden" : "block"
@@ -82,13 +84,46 @@ export default function HeaderApp({
             {clientSide && !isScrolled && (
               <Badge
                 variant="secondary"
-                className="hidden sm:inline-flex gap-2"
+                className="hidden sm:inline-flex gap-2 text-gray-500"
               >
-                <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                <span className="h-1.5 w-1.5 rounded-full bg-green-400 animate-pulse" />
                 Client-side only — no data sent
               </Badge>
             )}
           </div>
+        </div>
+      </div>
+    </header>
+  );
+}
+
+export function HeaderHorizontal({
+  title,
+  description,
+  icon,
+  children,
+}: {
+  title: string;
+  description: string;
+  icon: React.ReactNode;
+  children: React.ReactNode;
+}) {
+  return (
+    <header className="border-b border-border/50 bg-white/80 backdrop-blur-xl sticky top-0 z-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-indigo-400 flex items-center justify-center shadow-lg shadow-primary/25">
+              {icon}
+            </div>
+            <div>
+              <h1 className="text-xl font-bold text-foreground tracking-tight">
+                {title}
+              </h1>
+              <p className="text-xs text-muted-foreground">{description}</p>
+            </div>
+          </div>
+          <div className="flex items-center gap-2">{children}</div>
         </div>
       </div>
     </header>

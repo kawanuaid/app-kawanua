@@ -39,7 +39,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             <SidebarMenuButton size="lg" asChild>
               <Link to="/">
                 <img
-                  src="/assets/imgs/favicon.svg"
+                  src="/assets/imgs/favicon-192x192.png"
                   alt=""
                   className="size-8 rounded-sm"
                 />
@@ -69,10 +69,13 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                       <SidebarMenuSubItem key={item.title}>
                         <SidebarMenuSubButton asChild>
                           <Link to={item.url} className="flex items-center">
-                            <span className="text-teal-500/60">
+                            <span className="text-primary">
                               <item.icon className="size-4" />
                             </span>{" "}
                             <span className="text-xs">{item.title}</span>
+                            {item.isHighlight && (
+                              <span className="text-xs text-amber-500">★</span>
+                            )}
                           </Link>
                         </SidebarMenuSubButton>
                       </SidebarMenuSubItem>

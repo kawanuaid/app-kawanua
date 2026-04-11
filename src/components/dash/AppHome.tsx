@@ -1,7 +1,13 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { data } from "@/lib/data";
-import { KeyRound, LucideIcon, Search } from "lucide-react";
+import {
+  KeyRound,
+  LucideIcon,
+  Search,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
 import { cn } from "@/lib/utils";
 import {
   Card,
@@ -11,6 +17,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 
 // Map URL path to accent color and description (icon diambil dari data.ts)
 const appMeta: Record<string, { accent: string; description: string }> = {
@@ -112,10 +119,13 @@ interface AppItem {
   url: string;
   isActive?: boolean;
   icon?: LucideIcon;
+  cover?: string;
 }
 
 export default function AppHome() {
   const [searchQuery, setSearchQuery] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 15;
 
   // Flatten all navMain items into a single list and sort A-Z
   const allApps: (AppItem & { category: string })[] = data.navMain
@@ -137,6 +147,18 @@ export default function AppHome() {
     );
   });
 
+  const totalPages = Math.ceil(filteredApps.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const paginatedApps = filteredApps.slice(
+    startIndex,
+    startIndex + itemsPerPage,
+  );
+
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(e.target.value);
+    setCurrentPage(1);
+  };
+
   return (
     <div className="p-6 h-full">
       {/* Header */}
@@ -156,7 +178,7 @@ export default function AppHome() {
             placeholder="Cari aplikasi, kategori..."
             className="w-full pl-9 bg-background/60 backdrop-blur-sm"
             value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
+            onChange={handleSearchChange}
           />
         </div>
       </div>
@@ -173,36 +195,123 @@ export default function AppHome() {
         </div>
       )}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {filteredApps.map((app) => {
+        {paginatedApps.map((app) => {
           const meta = appMeta[app.url] ?? defaultMeta;
           const Icon = app.icon ?? KeyRound;
 
           return (
             <Link key={app.url} to={app.url}>
-              <Card
-                className={cn(
-                  "group flex flex-col md:flex-row gap-4 rounded-xl border bg-gradient-to-br p-5",
-                  "transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg",
-                  meta.accent,
-                )}
-              >
-                <div className="flex w-1/6 size-12 items-center justify-center rounded-lg bg-background/60 backdrop-blur-sm border border-border/50 shadow-sm group-hover:scale-110 transition-transform duration-200">
-                  <Icon className="size-6 text-foreground" />
-                </div>
-                <CardHeader className="flex w-5/6 flex-col gap-0.5 p-0">
-                  <span className="text-[10px] font-semibold uppercase tracking-widest text-muted-foreground">
-                    {app.category}
-                  </span>
-                  <CardTitle className="leading-tight">{app.title}</CardTitle>
-                  <CardDescription className="leading-snug">
-                    {(appMeta[app.url] ?? defaultMeta).description}
-                  </CardDescription>
-                </CardHeader>
-              </Card>
+              <article id={"card" + app.url.replace("/", "-")}>
+                <Card
+                  className={cn(
+                    "group relative flex flex-col justify-end overflow-hidden rounded-xl border min-h-[250px] p-5",
+                    "transition-all duration-300 hover:-translate-y-1 hover:shadow-xl",
+                    meta.accent.match(/border-\\S+/g)?.join(" ") ||
+                      "border-border",
+                  )}
+                >
+                  {/* Background Image Layer */}
+                  {app.cover && (
+                    <div
+                      className="absolute inset-0 z-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105"
+                      style={{ backgroundImage: `url('${app.cover}')` }}
+                    />
+                  )}
+
+                  {/* Accent Gradient Overlay */}
+                  {/* <div
+                    className={cn(
+                      "absolute inset-0 z-0 bg-gradient-to-br opacity-60 transition-opacity duration-300 group-hover:opacity-80",
+                      meta.accent.replace(/border-\\S+/g, "").trim(),
+                    )}
+                  /> */}
+
+                  {/* Bottom-to-Top Gradient Overlay for Text Readability */}
+                  {/* <div className="absolute inset-0 z-0 bg-gradient-to-t from-background via-background/90 to-background/10" /> */}
+                  <div className="absolute inset-0 z-0 bg-gradient-to-t from-slate-950 via-slate-950/80 to-slate-950/10" />
+
+                  {/* Content Layer */}
+                  <div className="relative z-10 flex flex-col gap-3 mt-auto">
+                    {/* <div className="flex w-10 h-10 items-center justify-center rounded-lg bg-background backdrop-blur-md border border-border/50 shadow-sm group-hover:scale-110 group-hover:bg-background transition-all duration-300"> */}
+                    <div
+                      className={cn(
+                        "flex w-10 h-10 items-center justify-center rounded-lg bg-gradient-to-br backdrop-blur-md border border-border/50 shadow-sm group-hover:scale-110 bg-background transition-all duration-300",
+                        meta.accent,
+                      )}
+                    >
+                      <Icon className="size-5 text-foreground" />
+                    </div>
+                    <CardHeader className="flex flex-col gap-0.5 p-0">
+                      <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400 drop-shadow-sm">
+                        {app.category}
+                      </span>
+                      <CardTitle className="leading-tight text-lg text-slate-100 drop-shadow-sm">
+                        {app.title}
+                      </CardTitle>
+                      <CardDescription className="leading-snug text-slate-200/70 line-clamp-2">
+                        {(appMeta[app.url] ?? defaultMeta).description}
+                      </CardDescription>
+                    </CardHeader>
+                  </div>
+                </Card>
+              </article>
             </Link>
+            // <Link
+            //   key={app.url}
+            //   to={app.url}
+            //   className="link-card overflow-hidden translate-y-0 hover:-translate-y-[2px] transition-all duration-200 rounded-lg relative"
+            // >
+            //   <article className={"card" + app.url.replace("/", "-")}>
+            //     <Card
+            //       className={cn(
+            //         "group flex flex-col md:flex-row gap-4 rounded-xl border border-primary bg-slate-100 bg-gradient-to-br p-5",
+            //         // "transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg",
+            //         // meta.accent,
+            //       )}
+            //     >
+            //       <div className="flex w-1/6 size-12 items-center justify-center rounded-lg bg-background/60 backdrop-blur-sm border border-border/50 shadow-sm group-hover:scale-110 transition-transform duration-200">
+            //         <Icon className="size-6 text-foreground" />
+            //       </div>
+            //       <CardHeader className="flex w-5/6 flex-col gap-0.5 p-0">
+            //         <span className="text-[10px] font-semibold uppercase tracking-widest text-muted-foreground">
+            //           {app.category}
+            //         </span>
+            //         <CardTitle className="leading-tight">{app.title}</CardTitle>
+            //         <CardDescription className="leading-snug">
+            //           {(appMeta[app.url] ?? defaultMeta).description}
+            //         </CardDescription>
+            //       </CardHeader>
+            //     </Card>
+            //   </article>
+            // </Link>
           );
         })}
       </div>
+
+      {/* Pagination Controls */}
+      {totalPages > 1 && (
+        <div className="mt-8 flex items-center justify-center gap-2">
+          <Button
+            variant="outline"
+            size="icon"
+            onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
+            disabled={currentPage === 1}
+          >
+            <ChevronLeft className="size-4" />
+          </Button>
+          <div className="flex items-center gap-2 px-4 text-sm font-medium">
+            Halaman {currentPage} dari {totalPages}
+          </div>
+          <Button
+            variant="outline"
+            size="icon"
+            onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
+            disabled={currentPage === totalPages}
+          >
+            <ChevronRight className="size-4" />
+          </Button>
+        </div>
+      )}
     </div>
   );
 }
