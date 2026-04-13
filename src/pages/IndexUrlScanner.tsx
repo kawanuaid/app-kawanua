@@ -7,17 +7,13 @@ import VerdictCard from "@/components/urlscanner/VerdictCard";
 import VendorList from "@/components/urlscanner/VendorList";
 import MetadataSidebar from "@/components/urlscanner/MetadataSidebar";
 import type { VirusTotalResponse } from "@/types/virustotal";
+import HeaderApp from "@/components/HeaderApp";
 
 const API_KEY = import.meta.env.VITE_VIRUSTOTAL_API_KEY as string;
 
-// In development, Vite proxies /api/vt/* → https://www.virustotal.com/api/v3/*
-// which avoids the browser CORS restriction (request is made server-side).
-// In production, point VT_BASE to your own backend proxy URL via VITE_VT_PROXY_BASE,
-// or fall back to the direct VirusTotal URL (which may still hit CORS unless your
-// production host sets the correct CORS headers or you deploy a serverless proxy).
-const VT_BASE =
-  import.meta.env.VITE_VT_PROXY_BASE ??
-  (import.meta.env.DEV ? "/api/vt" : "https://www.virustotal.com/api/v3");
+// Access the proxy URL and Bearer Token from environment variables
+const VT_BASE = import.meta.env.VITE_VT_PROXY_BASE as string;
+const VT_PROXY_KEY = import.meta.env.VITE_VT_PROXY_BASE_KEY as string;
 
 function extractTarget(input: string): {
   target: string;
@@ -54,9 +50,12 @@ async function scanWithVirusTotal(input: string): Promise<VirusTotalResponse> {
     endpoint = `${VT_BASE}/domains/${target}`;
   }
 
-  const res = await fetch(endpoint, {
-    headers: { "x-apikey": API_KEY },
-  });
+  const headers: Record<string, string> = { "x-apikey": API_KEY };
+  if (VT_PROXY_KEY) {
+    headers["Authorization"] = `Bearer ${VT_PROXY_KEY}`;
+  }
+
+  const res = await fetch(endpoint, { headers });
 
   if (!res.ok) {
     const err = await res.json().catch(() => ({}));
@@ -97,31 +96,19 @@ export default function UrlScannerPage() {
   };
 
   return (
-    <div className="min-h-screen p-4 relative overflow-hidden">
-      {/* Background effects */}
-      {/* <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,hsl(160_80%_45%/0.08),transparent_60%)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,hsl(200_80%_40%/0.05),transparent_50%)]" /> */}
+    <div className="min-h-screen bg-background bg-grid relative">
+      <HeaderApp
+        title={"Domain Scanner"}
+        description={
+          "Periksa domain atau URL terhadap 90+ vendor keamanan secara instan."
+        }
+        icon={<Shield className="h-8 w-8 text-white" />}
+        customCss={""}
+        clientSide={false}
+      />
+      <div className="absolute inset-0 bg-gradient-radial pointer-events-none" />
 
       <main className="max-w-7xl mx-auto px-4 py-10 md:py-16 z-50">
-        {/* Hero section */}
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-10"
-        >
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/30 bg-primary/10 text-primary text-xs font-medium mb-4">
-            <div className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-            Real-time threat detection
-          </div>
-          <h1 className="text-4xl md:text-5xl font-bold font-display text-foreground mb-3">
-            Is this URL safe?
-          </h1>
-          <p className="text-muted-foreground text-base max-w-md mx-auto">
-            Scan any domain or URL against 90+ security vendors instantly using
-            VirusTotal.
-          </p>
-        </motion.div>
-
         {/* Scanner input */}
         <div className="mb-8">
           <ScannerInput onScan={handleScan} isScanning={isScanning} />
@@ -197,7 +184,7 @@ export default function UrlScannerPage() {
               className="flex flex-col gap-6"
             >
               {/* Share report button */}
-              <div className="flex justify-end">
+              {/* <div className="flex justify-end">
                 <button
                   onClick={() => navigate(`/report/${result.data.id}`)}
                   className="flex items-center gap-2 px-4 py-2 rounded-lg border border-border text-xs text-muted-foreground hover:text-foreground hover:border-primary/50 transition-all"
@@ -205,7 +192,7 @@ export default function UrlScannerPage() {
                   <Shield size={13} className="text-primary" />
                   View Full Report
                 </button>
-              </div>
+              </div> */}
 
               {/* Verdict */}
               <VerdictCard

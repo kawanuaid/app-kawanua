@@ -46,6 +46,11 @@ const appMeta: Record<string, { accent: string; description: string }> = {
     accent: "from-amber-500/20 to-yellow-500/10 border-amber-500/30",
     description: "Cek apakah password kamu pernah bocor.",
   },
+  "/urlscanner": {
+    accent: "from-amber-500/20 to-yellow-500/10 border-amber-500/30",
+    description:
+      "Periksa domain atau URL terhadap 90+ vendor keamanan secara instan.",
+  },
   "/uuidgen": {
     accent: "from-sky-500/20 to-cyan-500/10 border-sky-500/30",
     description: "Generate UUID dari teks atau URL apapun.",

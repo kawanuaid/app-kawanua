@@ -24,6 +24,7 @@ import {
   BookImage,
   Tags,
   ArrowLeftRight,
+  Shield,
 } from "lucide-react";
 
 export const data = {
@@ -62,10 +63,13 @@ export const data = {
       title: "Security",
       url: "#",
       items: [
-        // {
-        //   title: "URL + IP Checker",
-        //   url: "/urlscanner",
-        // },
+        {
+          title: "Domain Scanner",
+          url: "/urlscanner",
+          icon: Shield,
+          isHighlight: false,
+          cover: "/assets/screenshots/passgen_tXM7Eg4Y7f.png",
+        },
         {
           title: "Password Generator",
           url: "/passgen",
