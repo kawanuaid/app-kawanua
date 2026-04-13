@@ -86,6 +86,10 @@ const appMeta: Record<string, { accent: string; description: string }> = {
     accent: "from-sky-500/20 to-cyan-500/10 border-sky-500/30",
     description: "Tampilkan hasil markdown secara real-time.",
   },
+  "/unit-converters": {
+    accent: "from-sky-500/20 to-cyan-500/10 border-sky-500/30",
+    description: "Konversi berbagai jenis satuan dalam satu platform.",
+  },
   "/jwtdecoder": {
     accent: "from-amber-500/20 to-yellow-500/10 border-amber-500/30",
     description: "Decode, analisis dan verifikasi JSON Web Tokens.",

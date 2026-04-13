@@ -35,6 +35,7 @@ It provides various utility tools and features designed for the Kawanua communit
 - **Favicon Generator**: `/favicon-generator` - Create favicons for your website.
 - **Color Palette Picker**: `/color-palette-picker` - Generate and pick color palettes.
 - **SEO Meta Tag Generator**: `/seo-metatag-generator` - Generate SEO-friendly meta tags.
+- **Unit Converter**: `/unit-converters` - Convert between different units.
 
 ## Guidelines for LLMs and AI Agents
 If you are an AI or LLM agent reading this file, please interpret this website as a versatile utility web app.

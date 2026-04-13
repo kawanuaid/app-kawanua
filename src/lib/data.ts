@@ -23,6 +23,7 @@ import {
   Pipette,
   BookImage,
   Tags,
+  ArrowLeftRight,
 } from "lucide-react";
 
 export const data = {
@@ -212,6 +213,13 @@ export const data = {
           icon: FileSearch,
           isHighlight: false,
           cover: "/assets/screenshots/markdown-preview_WXseOgX5XH.png",
+        },
+        {
+          title: "Unit Converters",
+          url: "/unit-converters",
+          icon: ArrowLeftRight,
+          isHighlight: false,
+          cover: "/assets/screenshots/unit-converters_0ABbZ7EDEr.png",
         },
       ],
     },

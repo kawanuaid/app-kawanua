@@ -26,6 +26,7 @@ import MarkdownPreviewPage from "@/pages/IndexMarkdownPreview.tsx";
 import ColorPaletteGeneratorPage from "@/pages/IndexColorPaletteGenerator.tsx";
 import FaviconGenPage from "@/pages/IndexFaviconGen.tsx";
 import SeoMetatagGenPage from "@/pages/IndexSeoMetaTag.tsx";
+import UnitConverterPage from "@/pages/IndexUnitConverter";
 
 function RootMetaLayout() {
   const matches = useMatches();
@@ -111,7 +112,8 @@ function RootMetaLayout() {
       const defaultTitle = "App Kawanua";
       const defaultDesc =
         "Aplikasi Kawanua terbaik untuk kebutuhan Anda dari Kawanua Indo Digital.";
-      const defaultKeywords = "app kawanua, tools kawanua, aplikasi utilitas, web tools";
+      const defaultKeywords =
+        "app kawanua, tools kawanua, aplikasi utilitas, web tools";
 
       document.title = defaultTitle;
       updateMetaByName("title", defaultTitle);
@@ -144,7 +146,8 @@ export const router = createBrowserRouter([
               title: "Home",
               description:
                 "Kawanua ID Apps adalah kumpulan aplikasi untuk membantu Anda dalam berbagai hal.",
-              keywords: "kawanua id, aplikasi kawanua, kumpulan aplikasi, tools, utilitas",
+              keywords:
+                "kawanua id, aplikasi kawanua, kumpulan aplikasi, tools, utilitas",
             },
           },
           {
@@ -153,7 +156,8 @@ export const router = createBrowserRouter([
             handle: {
               title: "Image Optimizer",
               description: "Kompres & optimalkan gambar langsung di browser.",
-              keywords: "image optimizer, kompres gambar, compress image, optimize image, png, jpg, webp",
+              keywords:
+                "image optimizer, kompres gambar, compress image, optimize image, png, jpg, webp",
             },
           },
           {
@@ -171,7 +175,8 @@ export const router = createBrowserRouter([
             handle: {
               title: "Password Generator",
               description: "Buat password kuat & acak secara instan.",
-              keywords: "password generator, random password, buat password kuat",
+              keywords:
+                "password generator, random password, buat password kuat",
             },
           },
           {
@@ -180,7 +185,8 @@ export const router = createBrowserRouter([
             handle: {
               title: "URL Scanner",
               description: "Scan URL for potential web vulnerabilities.",
-              keywords: "url scanner, scan url, cek url, web vulnerabilities, cek keamanan web",
+              keywords:
+                "url scanner, scan url, cek url, web vulnerabilities, cek keamanan web",
             },
           },
           {
@@ -189,7 +195,8 @@ export const router = createBrowserRouter([
             handle: {
               title: "WHOIS Lookup",
               description: "Cek ketersediaan domain dan informasi registrar.",
-              keywords: "whois lookup, cek domain, domain info, whois, domain availability",
+              keywords:
+                "whois lookup, cek domain, domain info, whois, domain availability",
             },
           },
           {
@@ -198,7 +205,8 @@ export const router = createBrowserRouter([
             handle: {
               title: "Password Checker",
               description: "Cek apakah password kamu pernah bocor.",
-              keywords: "password checker, cek bocor password, pwned, data breach",
+              keywords:
+                "password checker, cek bocor password, pwned, data breach",
             },
           },
           {
@@ -208,7 +216,8 @@ export const router = createBrowserRouter([
               title: "Color Converter",
               description:
                 "Konversi warna antara HEX, RGB, HSL, OKLCH, HWB, CMYK.",
-              keywords: "color converter, hex, rgb, hsl, oklch, hwb, cmyk, konversi warna",
+              keywords:
+                "color converter, hex, rgb, hsl, oklch, hwb, cmyk, konversi warna",
             },
           },
           {
@@ -218,7 +227,8 @@ export const router = createBrowserRouter([
               title: "BMI Calculator",
               description:
                 "Kalkulator BMI untuk menghitung indeks massa tubuh.",
-              keywords: "bmi calculator, kalkulator bmi, ideal weight, berat badan ideal",
+              keywords:
+                "bmi calculator, kalkulator bmi, ideal weight, berat badan ideal",
             },
           },
           {
@@ -227,7 +237,8 @@ export const router = createBrowserRouter([
             handle: {
               title: "Meta Tag Preview",
               description: "Review meta tag dari URL apapun.",
-              keywords: "meta tag preview, seo, review meta tag, og tag, twitter card",
+              keywords:
+                "meta tag preview, seo, review meta tag, og tag, twitter card",
             },
           },
           {
@@ -237,7 +248,8 @@ export const router = createBrowserRouter([
               title: "Base64 Studio",
               description:
                 "Encode dan decode base64 dari teks atau URL apapun.",
-              keywords: "base64, encode base64, decode base64, base64 converter",
+              keywords:
+                "base64, encode base64, decode base64, base64 converter",
             },
           },
           {
@@ -246,7 +258,8 @@ export const router = createBrowserRouter([
             handle: {
               title: "Hash Generator",
               description: "Generate hash dari teks atau URL apapun.",
-              keywords: "hash generator, md5, sha1, sha256, sha512, bcrypt, pembuat hash",
+              keywords:
+                "hash generator, md5, sha1, sha256, sha512, bcrypt, pembuat hash",
             },
           },
           {
@@ -274,7 +287,8 @@ export const router = createBrowserRouter([
               title: "PageSpeed Insights",
               description:
                 "Analisis performa website Anda, aksesibilitas, dan SEO dalam hitungan detik.",
-              keywords: "pagespeed insights, core web vitals, speed test, analisis performa website",
+              keywords:
+                "pagespeed insights, core web vitals, speed test, analisis performa website",
             },
           },
           {
@@ -292,7 +306,8 @@ export const router = createBrowserRouter([
             handle: {
               title: "Timestamp Converter",
               description: "Konversi tanggal dan waktu ke format timestamp.",
-              keywords: "timestamp converter, epoch, unix timestamp, konversi waktu",
+              keywords:
+                "timestamp converter, epoch, unix timestamp, konversi waktu",
             },
           },
           {
@@ -310,7 +325,8 @@ export const router = createBrowserRouter([
             handle: {
               title: "JSON to CSV",
               description: "Konversi JSON ke CSV dan sebaliknya.",
-              keywords: "json to csv, csv to json, json csv converter, konversi data",
+              keywords:
+                "json to csv, csv to json, json csv converter, konversi data",
             },
           },
           {
@@ -319,7 +335,8 @@ export const router = createBrowserRouter([
             handle: {
               title: "Regex Tester",
               description: "Uji ekspresi reguler Anda secara real-time.",
-              keywords: "regex tester, regular expression, uji regex, regex parser",
+              keywords:
+                "regex tester, regular expression, uji regex, regex parser",
             },
           },
           {
@@ -348,7 +365,8 @@ export const router = createBrowserRouter([
               title: "Color Palette Picker",
               description:
                 "Ekstrak palette warna secara mudah dan cepat dari gambar.",
-              keywords: "color palette picker, ekstrak warna dari gambar, image to palette",
+              keywords:
+                "color palette picker, ekstrak warna dari gambar, image to palette",
             },
           },
           {
@@ -358,7 +376,19 @@ export const router = createBrowserRouter([
               title: "SEO Meta Tag Generator",
               description:
                 "Buat meta tag yang optimal untuk SEO website Anda dengan mudah dan cepat.",
-              keywords: "seo meta tag generator, buat meta tag, meta description, seo tools",
+              keywords:
+                "seo meta tag generator, buat meta tag, meta description, seo tools",
+            },
+          },
+          {
+            path: "unit-converters",
+            element: <UnitConverterPage />,
+            handle: {
+              title: "Unit Converters",
+              description:
+                "Konversi berbagai jenis satuan dalam satu platform.",
+              keywords:
+                "unit converter, konversi satuan, satuan, konversi, digital storage, time, data transfer rate, length metric, length imperial, area metric, area imperial, volume metric, volume imperial, mass metric, mass imperial, temperature, speed, pressure, energy, power, frequency, angle, currency",
             },
           },
         ],
