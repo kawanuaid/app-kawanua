@@ -7,8 +7,8 @@ Kawanua Indo Digital App adalah platform kumpulan alat bantu digital (digital ut
 Proyek ini dibangun menggunakan teknologi terkini untuk memastikan performa dan pengalaman pengguna yang optimal:
 
 - **Vite** - Build tool yang sangat cepat
-- **React 18** - Library UI utama
-- **TypeScript** - Tipipe data yang aman untuk pengembangan skala besar
+- **React 19** - Library UI utama
+- **TypeScript** - Tipe data yang aman untuk pengembangan skala besar
 - **Tailwind CSS** - Framework CSS utility-first
 - **Shadcn UI** - Komponen UI yang dapat dikustomisasi (berbasis Radix UI)
 - **TanStack Query (React Query)** - Manajemen state server dan data fetching
@@ -16,8 +16,6 @@ Proyek ini dibangun menggunakan teknologi terkini untuk memastikan performa dan 
 - **Lucide React** - Set ikon yang ringan dan konsisten
 - **Recharts** - Visualisasi data dan grafik
 - **React Hook Form & Zod** - Manajemen form dan validasi skema
-- **Vitest** - Unit testing yang cepat
-- **Playwright** - End-to-end (E2E) testing
 
 ## 🤝 Cara Berkontribusi
 
