@@ -1,21 +1,42 @@
 # Kawanua Indo Digital App
 
+[![License: AGPL v3](https://img.shields.io/badge/License-AGPL_v3-blue.svg?style=flat-square)](https://www.gnu.org/licenses/agpl-3.0)
+[![Repo Size](https://img.shields.io/github/repo-size/KawanuaDev/app-kawanua?style=flat-square)](https://github.com/KawanuaDev/app-kawanua)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/KawanuaDev/app-kawanua/pulls)
+[![Security Policy](https://img.shields.io/badge/Security-Policy-brightgreen.svg?style=flat-square)](./SECURITY.md)
+
 Kawanua Indo Digital App adalah platform kumpulan alat bantu digital (digital utility tools) modern yang dirancang untuk memberikan solusi cepat dan efisien bagi pengguna. Proyek ini mencakup berbagai utilitas seperti optimasi gambar, pemeriksaan keamanan, dan alat bantu produktivitas lainnya.
 
 ## 🛠️ Daftar Tools & Teknologi
 
 Proyek ini dibangun menggunakan teknologi terkini untuk memastikan performa dan pengalaman pengguna yang optimal:
 
-- **Vite** - Build tool yang sangat cepat
-- **React 19** - Library UI utama
-- **TypeScript** - Tipe data yang aman untuk pengembangan skala besar
-- **Tailwind CSS** - Framework CSS utility-first
-- **Shadcn UI** - Komponen UI yang dapat dikustomisasi (berbasis Radix UI)
-- **TanStack Query (React Query)** - Manajemen state server dan data fetching
-- **React Router** - Navigasi antar halaman
-- **Lucide React** - Set ikon yang ringan dan konsisten
-- **Recharts** - Visualisasi data dan grafik
-- **React Hook Form & Zod** - Manajemen form dan validasi skema
+### Core Stack
+
+![React](https://img.shields.io/badge/react-%2320232d.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
+![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
+
+### State & Logic
+
+![React Query](https://img.shields.io/badge/-React%20Query-FF4154?style=for-the-badge&logo=react-query&logoColor=white)
+![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)
+![React Hook Form](https://img.shields.io/badge/React%20Hook%20Form-%23EC5990.svg?style=for-the-badge&logo=reacthookform&logoColor=white)
+![Zod](https://img.shields.io/badge/zod-%233068b7.svg?style=for-the-badge&logo=zod&logoColor=white)
+
+### UI & UX
+
+![Shadcn UI](https://img.shields.io/badge/shadcn%20ui-000000?style=for-the-badge&logo=shadcnui&logoColor=white)
+![Radix UI](https://img.shields.io/badge/radix%20ui-121212?style=for-the-badge&logo=radix-ui&logoColor=white)
+![Recharts](https://img.shields.io/badge/recharts-%2322B5BF.svg?style=for-the-badge&logo=recharts&logoColor=white)
+![Lucide](https://img.shields.io/badge/Lucide-Icons-orange?style=for-the-badge)
+
+### Deployment & Infrastructure
+
+![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white)
+![Cloudflare](https://img.shields.io/badge/Cloudflare-%23F38020.svg?style=for-the-badge&logo=cloudflare&logoColor=white)
+![Deno](https://img.shields.io/badge/Deno%20Deploy-%23000000.svg?style=for-the-badge&logo=deno&logoColor=white)
 
 ## 🤝 Cara Berkontribusi
 
@@ -47,6 +68,10 @@ Kami sangat menyambut kontribusi dari developer lain! Berikut adalah langkah-lan
    ```
 8. **Buka Pull Request**: Buka halaman repositori asli dan ajukan Pull Request dari branch Anda. Kami akan meninjau kontribusi Anda secepat mungkin!
 
+## 🛡️ Kebijakan Keamanan (Security Policy)
+
+Keamanan adalah prioritas bagi kami. Jika Anda menemukan kerentanan keamanan, mohon untuk tidak melaporkannya melalui issue publik. Silakan tinjau **[SECURITY.md](./SECURITY.md)** untuk detail mengenai cara melaporkan masalah keamanan secara privat.
+
 ## 📄 Lisensi
 
 Proyek ini dilisensikan di bawah **GNU Affero General Public License v3.0 (AGPL-3.0)**. Berikut adalah ringkasan poin-poin utamanya:
@@ -58,4 +83,5 @@ Proyek ini dilisensikan di bawah **GNU Affero General Public License v3.0 (AGPL-
 - **Atribusi**: Anda harus mencantumkan pemberitahuan hak cipta dan lisensi yang asli dalam setiap salinan software.
 
 ---
-Dibuat dengan ❤️ oleh tim Kawanua.
+
+Dibuat dengan ❤️ oleh tim KawanuaDev.
