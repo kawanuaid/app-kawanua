@@ -25,6 +25,7 @@ import {
   Tags,
   ArrowLeftRight,
   Shield,
+  SwatchBook,
 } from "lucide-react";
 import { NavGroup, NavItem } from "@/types/dashboard";
 
@@ -75,6 +76,20 @@ export const data: { navMain: NavGroup[]; navSecondary: any[] } = {
             "Ekstrak palette warna secara mudah dan cepat dari gambar.",
           keywords:
             "color palette picker, ekstrak warna dari gambar, image to palette",
+        },
+        {
+          title: "Tailwind CSS Color Converter",
+          url: "/tailwindcss-color-converter",
+          isActive: false,
+          isHighlight: true,
+          icon: SwatchBook,
+          cover:
+            "/assets/screenshots/tailwindcss-color-converter_uRBLcxFq0a.png",
+          accent: "from-violet-500/20 to-purple-500/10 border-violet-500/30",
+          description:
+            "Konversi warna Tailwind CSS ke HEX, RGB, HSL, HSV, dan CMYK.",
+          keywords:
+            "tailwind color converter, tailwind color, tailwind color generator, tailwind color to hex, tailwind color to rgb, tailwind color to hsl, tailwind color to hsv, tailwind color to cmyk",
         },
       ],
     },
@@ -209,17 +224,17 @@ export const data: { navMain: NavGroup[]; navSecondary: any[] } = {
       title: "Utilities",
       url: "#",
       items: [
-        {
-          title: "WHOIS Lookup",
-          url: "/whois",
-          icon: Globe,
-          isHighlight: false,
-          cover: "/assets/screenshots/domainlookup_WWShZtTgso.png",
-          accent: "from-pink-500/20 to-fuchsia-500/10 border-pink-500/30",
-          description: "Cek ketersediaan domain dan informasi registrar.",
-          keywords:
-            "whois lookup, cek domain, domain info, whois, domain availability",
-        },
+        // {
+        //   title: "WHOIS Lookup",
+        //   url: "/whois",
+        //   icon: Globe,
+        //   isHighlight: false,
+        //   cover: "/assets/screenshots/domainlookup_WWShZtTgso.png",
+        //   accent: "from-pink-500/20 to-fuchsia-500/10 border-pink-500/30",
+        //   description: "Cek ketersediaan domain dan informasi registrar.",
+        //   keywords:
+        //     "whois lookup, cek domain, domain info, whois, domain availability",
+        // },
         {
           title: "Timestamp Converter",
           url: "/timestamp",
