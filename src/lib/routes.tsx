@@ -28,6 +28,7 @@ import FaviconGenPage from "@/pages/IndexFaviconGen.tsx";
 import SeoMetatagGenPage from "@/pages/IndexSeoMetaTag.tsx";
 import UnitConverterPage from "@/pages/IndexUnitConverter";
 import { data } from "@/lib/data.ts";
+import TailwindColorPage from "@/pages/IndexTailwindColor";
 
 // Create a lookup map for app metadata from data.ts
 const appLookup = new Map(
@@ -191,11 +192,11 @@ export const router = createBrowserRouter([
             element: <UrlScannerPage />,
             handle: getMeta("urlscanner"),
           },
-          {
-            path: "whois",
-            element: <WhoisPage />,
-            handle: getMeta("whois"),
-          },
+          // {
+          //   path: "whois",
+          //   element: <WhoisPage />,
+          //   handle: getMeta("whois"),
+          // },
           {
             path: "passcheck",
             element: <PassCheckPage />,
@@ -290,6 +291,11 @@ export const router = createBrowserRouter([
             path: "unit-converters",
             element: <UnitConverterPage />,
             handle: getMeta("unit-converters"),
+          },
+          {
+            path: "tailwindcss-color-converter",
+            element: <TailwindColorPage />,
+            handle: getMeta("tailwindcss-color-converter"),
           },
           {
             path: "*",

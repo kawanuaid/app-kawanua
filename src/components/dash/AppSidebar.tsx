@@ -67,7 +67,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                   <SidebarMenuSub className="ml-0 border-l-0 px-1.5">
                     {item.items.map((item) => (
                       <SidebarMenuSubItem key={item.title}>
-                        <SidebarMenuSubButton asChild>
+                        <SidebarMenuSubButton asChild className="min-h-10">
                           <Link to={item.url} className="flex items-center">
                             <span className="text-primary">
                               <item.icon className="size-4" />
