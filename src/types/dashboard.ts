@@ -10,6 +10,7 @@ export interface NavItem {
   accent?: string;
   description?: string;
   keywords?: string;
+  isPromoted?: boolean;
 }
 
 export interface NavGroup {

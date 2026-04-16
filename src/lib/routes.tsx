@@ -29,6 +29,7 @@ import SeoMetatagGenPage from "@/pages/IndexSeoMetaTag.tsx";
 import UnitConverterPage from "@/pages/IndexUnitConverter";
 import { data } from "@/lib/data.ts";
 import TailwindColorPage from "@/pages/IndexTailwindColor";
+import ImagePlaceholderPage from "@/pages/IndexImagePlaceholder";
 
 // Create a lookup map for app metadata from data.ts
 const appLookup = new Map(
@@ -296,6 +297,11 @@ export const router = createBrowserRouter([
             path: "tailwindcss-color-converter",
             element: <TailwindColorPage />,
             handle: getMeta("tailwindcss-color-converter"),
+          },
+          {
+            path: "image-placeholder",
+            element: <ImagePlaceholderPage />,
+            handle: getMeta("image-placeholder"),
           },
           {
             path: "*",
