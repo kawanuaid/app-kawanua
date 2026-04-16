@@ -16,6 +16,7 @@ import { LoaderIcon } from "@/components/domainlookup/LoaderIcon";
 import { lookupDomain, WhoisData, SUPPORTED_TLDS } from "@/lib/domain";
 import HeaderApp from "@/components/HeaderApp";
 import { formatDate, formatDateTime } from "@/hooks/formatDate";
+import { SubFooter } from "@/components/Footer";
 
 export default function DomainLookupPage() {
   const [domain, setDomain] = useState("");
@@ -81,7 +82,7 @@ export default function DomainLookupPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background bg-grid relative">
+    <div className="min-h-screen bg-background bg-grid relative flex flex-col justify-between">
       <HeaderApp
         title={"Domain Lookup"}
         description={"Cek ketersediaan domain dan informasi registrar"}
@@ -384,19 +385,17 @@ export default function DomainLookupPage() {
       </main>
 
       {/* Footer */}
-      <footer className="">
-        <div className="max-w-5xl mx-auto px-6 py-4">
-          <div className="flex flex-col items-center justify-between gap-4">
-            <div className="flex items-center gap-2 text-sm text-slate-600">
-              <WhoisIcon className="h-4 w-4" />
-              <span>Powered by RDAP (Registration Data Access Protocol)</span>
-            </div>
-            <div className="text-sm text-slate-500">
-              Data may not be 100% accurate. Verify through official sources.
-            </div>
+      <SubFooter>
+        <div className="flex flex-col items-center justify-between gap-2">
+          <div className="flex items-center gap-2 text-slate-600">
+            <WhoisIcon className="h-4 w-4" />
+            <span>Powered by RDAP (Registration Data Access Protocol)</span>
+          </div>
+          <div className="text-slate-500">
+            Data may not be 100% accurate. Verify through official sources.
           </div>
         </div>
-      </footer>
+      </SubFooter>
     </div>
   );
 }

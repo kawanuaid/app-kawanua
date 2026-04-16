@@ -27,6 +27,7 @@ import {
   Shield,
   SwatchBook,
   Maximize,
+  Star,
 } from "lucide-react";
 import { NavGroup, NavItem } from "@/types/dashboard";
 
@@ -35,7 +36,13 @@ export const defaultMeta = {
   description: "Buka aplikasi ini untuk mulai menggunakannya.",
 };
 
-export const data: { navMain: NavGroup[]; navSecondary: any[] } = {
+export interface NavSecondaryItem {
+  title: string;
+  color: string;
+  icon: typeof Star;
+}
+
+export const data: { navMain: NavGroup[]; navSecondary: NavSecondaryItem[] } = {
   navMain: [
     {
       title: "Visual",
@@ -381,22 +388,14 @@ export const data: { navMain: NavGroup[]; navSecondary: any[] } = {
   ],
   navSecondary: [
     {
-      title: "Source Code",
-      url: "https://github.com/KawanuaDev/app-kawanua",
-      icon: GitBranch,
-      isHighlight: false,
+      title: "Rekomendasi Developer",
+      color: "text-amber-500",
+      icon: Star,
     },
     {
-      title: "Berkontribusi",
-      url: "https://github.com/KawanuaDev/app-kawanua/blob/main/CONTRIBUTING.md",
-      icon: GitFork,
-      isHighlight: false,
-    },
-    {
-      title: "License",
-      url: "https://github.com/KawanuaDev/app-kawanua/blob/main/LICENSE",
-      icon: FileText,
-      isHighlight: false,
+      title: "Promosi App",
+      color: "text-teal-500",
+      icon: Star,
     },
   ],
 };

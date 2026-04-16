@@ -33,6 +33,7 @@ import { Slider } from "@/components/ui/slider";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 import HeaderApp from "@/components/HeaderApp";
+import { SubFooter } from "@/components/Footer";
 
 type CodeTab = "html" | "markdown" | "css";
 
@@ -525,21 +526,17 @@ height: ${height}px;`;
       </main>
 
       {/* Footer */}
-      <footer className="border-t bg-white/60 backdrop-blur-sm mt-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col sm:flex-row items-center justify-center gap-4">
-          <div className="text-sm text-muted-foreground">
-            Powered by{" "}
-            <a
-              href="https://kid.or.id"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-primary hover:underline font-medium"
-            >
-              KawanuaDev
-            </a>
-          </div>
-        </div>
-      </footer>
+      <SubFooter>
+        Powered by{" "}
+        <a
+          href="https://kid.or.id"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-primary hover:underline font-medium"
+        >
+          KawanuaDev
+        </a>
+      </SubFooter>
     </div>
   );
 }

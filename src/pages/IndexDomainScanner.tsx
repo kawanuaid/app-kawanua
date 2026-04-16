@@ -8,6 +8,7 @@ import VendorList from "@/components/urlscanner/VendorList";
 import MetadataSidebar from "@/components/urlscanner/MetadataSidebar";
 import type { VirusTotalResponse } from "@/types/virustotal";
 import HeaderApp from "@/components/HeaderApp";
+import { SubFooter } from "@/components/Footer";
 
 const API_KEY = import.meta.env.VITE_VIRUSTOTAL_API_KEY as string;
 
@@ -96,7 +97,7 @@ export default function UrlScannerPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background bg-grid relative">
+    <div className="min-h-screen bg-background bg-grid relative flex flex-col justify-between">
       <HeaderApp
         title={"Domain Scanner"}
         description={
@@ -108,7 +109,7 @@ export default function UrlScannerPage() {
       />
       <div className="absolute inset-0 bg-gradient-radial pointer-events-none" />
 
-      <main className="max-w-7xl mx-auto px-4 py-10 md:py-16 z-50">
+      <main className="w-full max-w-7xl mx-auto px-4 py-10 md:py-16 z-50">
         {/* Scanner input */}
         <div className="mb-8">
           <ScannerInput onScan={handleScan} isScanning={isScanning} />
@@ -232,6 +233,21 @@ export default function UrlScannerPage() {
           </motion.div>
         )}
       </main>
+
+      <SubFooter>
+        <span>
+          Powered by{" "}
+          <a
+            href="https://www.virustotal.com/gui/home/url"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-primary hover:underline"
+          >
+            VirusTotal
+          </a>
+          .
+        </span>
+      </SubFooter>
     </div>
   );
 }

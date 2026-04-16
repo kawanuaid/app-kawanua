@@ -4,6 +4,7 @@ import { type LucideIcon } from "lucide-react";
 import {
   SidebarGroup,
   SidebarGroupContent,
+  SidebarGroupLabel,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
@@ -15,21 +16,24 @@ export function NavSecondary({
 }: {
   items: {
     title: string;
-    url: string;
+    color: string;
     icon: LucideIcon;
   }[];
 } & React.ComponentPropsWithoutRef<typeof SidebarGroup>) {
   return (
     <SidebarGroup {...props}>
+      <SidebarGroupLabel className="text-[10px] font-bold uppercase text-muted-foreground px-2">
+        Keterangan
+      </SidebarGroupLabel>
       <SidebarGroupContent>
         <SidebarMenu>
           {items.map((item) => (
             <SidebarMenuItem key={item.title}>
               <SidebarMenuButton asChild size="sm">
-                <a href={item.url}>
-                  <item.icon className="text-teal-500/40" />
-                  <span>{item.title}</span>
-                </a>
+                <div className="flex items-center gap-2">
+                  <item.icon className={`${item.color} size-2 min-w-2`} />
+                  <span className="text-xs font-medium">{item.title}</span>
+                </div>
               </SidebarMenuButton>
             </SidebarMenuItem>
           ))}

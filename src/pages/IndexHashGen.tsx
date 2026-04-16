@@ -12,6 +12,7 @@ import {
 import CryptoJS from "crypto-js";
 import { Badge } from "@/components/ui/badge";
 import HeaderApp from "@/components/HeaderApp";
+import { Disclaimer, SubFooter } from "@/components/Footer";
 
 type HashAlgorithm =
   | "md5"
@@ -103,7 +104,7 @@ export default function HashGenPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-violet-50/30 to-indigo-50/50">
+    <div className="min-h-screen bg-background bg-grid relative flex flex-col justify-between">
       {/* Header */}
       <HeaderApp
         title="Hash Generator"
@@ -112,6 +113,7 @@ export default function HashGenPage() {
         customCss=""
         clientSide
       />
+      <div className="absolute inset-0 bg-gradient-radial pointer-events-none" />
 
       <main className="max-w-5xl mx-auto px-4 sm:px-6 py-8">
         {/* Input Section */}
@@ -333,10 +335,9 @@ export default function HashGenPage() {
       </main>
 
       {/* Footer */}
-      <footer className="text-center text-xs text-slate-400 py-6 mt-4 border-t border-slate-200/60">
-        All encoding/decoding happens locally in your browser. No data is
-        transmitted.
-      </footer>
+      <SubFooter>
+        <Disclaimer />
+      </SubFooter>
     </div>
   );
 }

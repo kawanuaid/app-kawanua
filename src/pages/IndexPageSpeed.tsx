@@ -17,6 +17,7 @@ import MetricCard from "@/components/pagespeed/MetricCard";
 import { analyzeUrl, type PageSpeedResults } from "@/lib/pagespeed";
 import { toast } from "sonner";
 import HeaderApp from "@/components/HeaderApp";
+import { SubFooter } from "@/components/Footer";
 
 const PageSpeedPage = () => {
   const [url, setUrl] = useState("");
@@ -39,7 +40,7 @@ const PageSpeedPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background bg-grid relative">
+    <div className="min-h-screen bg-background bg-grid relative flex flex-col justify-between">
       <HeaderApp
         title={"PageSpeed Checker"}
         description={
@@ -52,7 +53,7 @@ const PageSpeedPage = () => {
 
       <div className="absolute inset-0 bg-gradient-radial pointer-events-none" />
 
-      <div className="relative z-10 max-w-5xl mx-auto px-6 py-16">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 py-16">
         {/* Search */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
@@ -206,26 +207,20 @@ const PageSpeedPage = () => {
       </div>
 
       {/* Footer */}
-      <footer className="">
-        <div className="max-w-5xl mx-auto px-6 py-4">
-          <div className="flex flex-col items-center justify-between gap-4">
-            <div className="flex items-center gap-2 text-sm text-slate-600">
-              <span>
-                Powered by{" "}
-                <a
-                  href="https://pagespeed.web.dev/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-primary hover:underline"
-                >
-                  Google PageSpeed Insights
-                </a>
-                .
-              </span>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <SubFooter>
+        <span>
+          Powered by{" "}
+          <a
+            href="https://pagespeed.web.dev/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-primary hover:underline"
+          >
+            Google PageSpeed Insights
+          </a>
+          .
+        </span>
+      </SubFooter>
     </div>
   );
 };

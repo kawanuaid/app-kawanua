@@ -45,6 +45,7 @@ import {
   type EncodingMode,
 } from "@/lib/base64";
 import HeaderApp from "@/components/HeaderApp";
+import { Disclaimer, SubFooter } from "@/components/Footer";
 
 type ActiveTab = "encode" | "decode";
 
@@ -228,7 +229,7 @@ export default function Base64Page() {
 
   return (
     <TooltipProvider delayDuration={300}>
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-violet-50/30 to-indigo-50/50">
+      <div className="min-h-screen bg-background bg-grid relative flex flex-col justify-between">
         <HeaderApp
           title="Base64 Encoder / Decoder"
           description="Encode dan decode data dengan Base64 dengan mudah dan cepat"
@@ -757,10 +758,9 @@ export default function Base64Page() {
         </main>
 
         {/* Footer */}
-        <footer className="text-center text-xs text-slate-400 py-6 mt-4 border-t border-slate-200/60">
-          All encoding/decoding happens locally in your browser. No data is
-          transmitted.
-        </footer>
+        <SubFooter>
+          <Disclaimer />
+        </SubFooter>
       </div>
     </TooltipProvider>
   );

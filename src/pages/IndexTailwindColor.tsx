@@ -24,6 +24,7 @@ import {
 import { cn } from "@/lib/utils";
 import HeaderApp from "@/components/HeaderApp";
 import FormatRow from "@/components/tailwindcolor/FormatRow";
+import { SubFooter } from "@/components/Footer";
 
 export default function TailwindColorPage() {
   const [selectedFamily, setSelectedFamily] = useState("blue");
@@ -55,7 +56,7 @@ export default function TailwindColorPage() {
   }, [tailwindClass, hex, rgb, hsl, hsv, cmyk]);
 
   return (
-    <div className="min-h-screen bg-background bg-grid relative">
+    <div className="min-h-screen bg-background bg-grid relative flex flex-col justify-between">
       <HeaderApp
         title={"Tailwind CSS Color Converter"}
         description={
@@ -412,13 +413,7 @@ export default function TailwindColorPage() {
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-zinc-200/60 bg-white/50 mt-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <p className="text-center text-xs text-zinc-400">
-            Semua warna dari palet default Tailwind CSS v4
-          </p>
-        </div>
-      </footer>
+      <SubFooter>Semua warna dari palet default Tailwind CSS v4.</SubFooter>
     </div>
   );
 }

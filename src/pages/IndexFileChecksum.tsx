@@ -32,6 +32,7 @@ import {
   type ChecksumResult,
 } from "@/lib/checksum";
 import HeaderApp from "@/components/HeaderApp";
+import { Disclaimer, SubFooter } from "@/components/Footer";
 
 type ChecksumState = {
   results: ChecksumResult[];
@@ -229,7 +230,7 @@ export default function FileChecksumPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background bg-grid relative">
+    <div className="min-h-screen bg-background bg-grid relative flex flex-col justify-between">
       <HeaderApp
         title={"File Checksum Generator"}
         description={"Generate MD5, SHA-1, SHA-256, SHA-384, SHA-512 hash"}
@@ -526,16 +527,12 @@ export default function FileChecksumPage() {
               </CardContent>
             </Card>
           )}
-
-          {/* Footer Info */}
-          <div className="text-center py-8">
-            <p className="text-sm text-slate-500">
-              Semua perhitungan dilakukan secara lokal di browser Anda. File
-              Anda tidak pernah diunggah ke server mana pun.
-            </p>
-          </div>
         </div>
       </main>
+      {/* Footer Info */}
+      <SubFooter>
+        <Disclaimer />
+      </SubFooter>
     </div>
   );
 }

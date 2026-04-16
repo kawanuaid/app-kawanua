@@ -1,11 +1,12 @@
 import { useEffect } from "react";
 import { createBrowserRouter, Outlet, useMatches } from "react-router-dom";
+import { data } from "@/lib/data.ts";
 import Page from "@/pages/Index.tsx";
 import NotFound from "@/pages/NotFound.tsx";
 import ImageOptimizerPage from "@/pages/IndexShrimg.tsx";
 import QrCodePage from "@/pages/IndexQrCode.tsx";
 import PassGenPage from "@/pages/IndexPassGen.tsx";
-import UrlScannerPage from "@/pages/IndexUrlScanner.tsx";
+import UrlScannerPage from "@/pages/IndexDomainScanner";
 import WhoisPage from "@/pages/IndexWhois.tsx";
 import DashboardPage from "@/pages/IndexDashboard.tsx";
 import PassCheckPage from "@/pages/IndexPassCheck.tsx";
@@ -27,7 +28,6 @@ import ColorPaletteGeneratorPage from "@/pages/IndexColorPaletteGenerator.tsx";
 import FaviconGenPage from "@/pages/IndexFaviconGen.tsx";
 import SeoMetatagGenPage from "@/pages/IndexSeoMetaTag.tsx";
 import UnitConverterPage from "@/pages/IndexUnitConverter";
-import { data } from "@/lib/data.ts";
 import TailwindColorPage from "@/pages/IndexTailwindColor";
 import ImagePlaceholderPage from "@/pages/IndexImagePlaceholder";
 

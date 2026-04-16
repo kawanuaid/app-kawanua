@@ -26,6 +26,7 @@ import { Badge } from "@/components/ui/badge";
 import { useFaviconGenerator } from "@/hooks/useFaviconGenerator";
 import { cn } from "@/lib/utils";
 import HeaderApp from "@/components/HeaderApp";
+import { Disclaimer, SubFooter } from "@/components/Footer";
 
 const categoryColors: Record<string, string> = {
   standard: "bg-blue-100 text-blue-800 border-blue-200",
@@ -109,7 +110,7 @@ export default function FaviconGenPage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-background bg-grid relative">
+    <div className="min-h-screen bg-background bg-grid relative flex flex-col justify-between">
       <HeaderApp
         title={"Favicon Generator"}
         description={
@@ -121,7 +122,7 @@ export default function FaviconGenPage() {
       />
       <div className="absolute inset-0 bg-gradient-radial pointer-events-none" />
 
-      <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+      <main className="max-w-6xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
         {/* Upload Section */}
         {!sourceImage ? (
           <Card className="border-dashed border-2 shadow-none">
@@ -538,6 +539,9 @@ export default function FaviconGenPage() {
           </>
         )}
       </main>
+      <SubFooter>
+        <Disclaimer />
+      </SubFooter>
     </div>
   );
 }

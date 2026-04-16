@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { Command } from "lucide-react";
+import { Command, Star } from "lucide-react";
 
 import { NavSecondary } from "@/components/dash/NavSecondary";
 import {
@@ -78,9 +78,14 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                               </span>{" "}
                               <span className="text-xs">{item.title}</span>
                             </div>
-                            {item.isHighlight && (
-                              <span className="text-xs text-amber-500">★</span>
-                            )}
+                            <div className="flex items-center gap-1">
+                              {item.isHighlight && (
+                                <Star className="w-3 h-3 text-amber-500" />
+                              )}
+                              {item.isPromoted && (
+                                <Star className="w-3 h-3 text-teal-500" />
+                              )}
+                            </div>
                           </Link>
                         </SidebarMenuSubButton>
                       </SidebarMenuSubItem>
@@ -91,7 +96,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             ))}
           </SidebarMenu>
         </SidebarGroup>
-        {/* <NavSecondary items={data.navSecondary} className="mt-auto" /> */}
+        <NavSecondary items={data.navSecondary} className="mt-auto" />
       </SidebarContent>
       {/* <SidebarFooter>
         <div className="p-1">
