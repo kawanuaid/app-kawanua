@@ -28,6 +28,9 @@ function getStatus(value: string, key: string): keyof typeof STATUS_CONFIG {
 const ESSENTIAL_TAGS = [
   { key: "title", label: "Title" },
   { key: "description", label: "Description" },
+  { key: "keywords", label: "Keywords" },
+  { key: "author", label: "Author" },
+  { key: "language", label: "Language" },
   { key: "canonical", label: "Canonical URL" },
   { key: "robots", label: "Robots" },
   { key: "viewport", label: "Viewport" },
@@ -35,6 +38,7 @@ const ESSENTIAL_TAGS = [
   { key: "ogDescription", label: "og:description" },
   { key: "ogImage", label: "og:image" },
   { key: "ogUrl", label: "og:url" },
+  { key: "ogLocale", label: "og:locale" },
   { key: "twitterCard", label: "twitter:card" },
   { key: "twitterTitle", label: "twitter:title" },
   { key: "twitterDescription", label: "twitter:description" },

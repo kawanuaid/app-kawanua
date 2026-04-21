@@ -3,7 +3,7 @@ import type { MetaTagData } from "@/lib/metaParser";
 export const FacebookPreview = ({ data }: { data: MetaTagData }) => {
   const title = data.ogTitle || data.title || "No title";
   const desc = data.ogDescription || data.description || "No description";
-  const siteName = data.siteName || new URL(data.url).hostname;
+  const siteName = data.siteName || (() => { try { return new URL(data.url).hostname; } catch { return data.url; } })();
 
   return (
     <div className="space-y-2">

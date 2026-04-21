@@ -1,13 +1,49 @@
+// Shape of the `data` object returned by the metatag API
+interface MetaApiData {
+  url: string;
+  title: string;
+  description: string | null;
+  language: string | null;
+  keywords: string | null;
+  author: string | null;
+  robots: string | null;
+  canonical: string | null;
+  favicon: string | null;
+  viewport: string | null;
+  "og:title": string | null;
+  "og:description": string | null;
+  "og:image": string | null;
+  "og:type": string | null;
+  "og:url": string | null;
+  "og:site_name": string | null;
+  "og:locale": string | null;
+  "twitter:card": string | null;
+  "twitter:title": string | null;
+  "twitter:description": string | null;
+  "twitter:image": string | null;
+  "twitter:site": string | null;
+}
+
+interface MetaApiResponse {
+  success: boolean;
+  data: MetaApiData;
+}
+
+// Normalised interface used by the rest of the app
 export interface MetaTagData {
   title: string;
   description: string;
   url: string;
+  language: string;
+  keywords: string;
+  author: string;
   siteName: string;
   ogTitle: string;
   ogDescription: string;
   ogImage: string;
   ogType: string;
   ogUrl: string;
+  ogLocale: string;
   twitterCard: string;
   twitterTitle: string;
   twitterDescription: string;
@@ -17,9 +53,9 @@ export interface MetaTagData {
   canonical: string;
   robots: string;
   viewport: string;
-  charset: string;
-  allTags: { name: string; content: string; property?: string }[];
 }
+
+const API_BASE = "https://metatag-api.erol.ovh/scan";
 
 export async function fetchMetaTags(url: string): Promise<MetaTagData> {
   let formattedUrl = url.trim();
@@ -30,73 +66,40 @@ export async function fetchMetaTags(url: string): Promise<MetaTagData> {
     formattedUrl = `https://${formattedUrl}`;
   }
 
-  const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(formattedUrl)}`;
-  const response = await fetch(proxyUrl);
+  const encodedUrl = encodeURIComponent(formattedUrl);
+  const apiUrl = `${API_BASE}/${encodedUrl}`;
+
+  const response = await fetch(apiUrl);
   if (!response.ok) throw new Error(`Failed to fetch: ${response.status}`);
 
-  const html = await response.text();
-  const parser = new DOMParser();
-  const doc = parser.parseFromString(html, "text/html");
+  const json: MetaApiResponse = await response.json();
+  if (!json.success) throw new Error("API returned success: false");
 
-  const getMeta = (attr: string, value: string): string => {
-    const el =
-      doc.querySelector(`meta[name="${value}"]`) ||
-      doc.querySelector(`meta[property="${value}"]`) ||
-      doc.querySelector(`meta[${attr}="${value}"]`);
-    return el?.getAttribute("content") || "";
-  };
-
-  const allTags: MetaTagData["allTags"] = [];
-  doc.querySelectorAll("meta").forEach((el) => {
-    const name =
-      el.getAttribute("name") ||
-      el.getAttribute("property") ||
-      el.getAttribute("http-equiv") ||
-      "";
-    const content =
-      el.getAttribute("content") || el.getAttribute("charset") || "";
-    if (name || content) {
-      allTags.push({
-        name,
-        content,
-        property: el.getAttribute("property") || undefined,
-      });
-    }
-  });
-
-  const faviconEl = doc.querySelector(
-    'link[rel="icon"], link[rel="shortcut icon"]',
-  );
-  let favicon = faviconEl?.getAttribute("href") || "";
-  if (favicon && !favicon.startsWith("http")) {
-    const base = new URL(formattedUrl);
-    favicon = favicon.startsWith("/")
-      ? `${base.origin}${favicon}`
-      : `${base.origin}/${favicon}`;
-  }
-
-  const canonicalEl = doc.querySelector('link[rel="canonical"]');
+  const d = json.data;
+  const str = (v: string | null | undefined): string => v ?? "";
 
   return {
-    title: doc.querySelector("title")?.textContent || "",
-    description: getMeta("name", "description"),
-    url: formattedUrl,
-    siteName: getMeta("property", "og:site_name"),
-    ogTitle: getMeta("property", "og:title"),
-    ogDescription: getMeta("property", "og:description"),
-    ogImage: getMeta("property", "og:image"),
-    ogType: getMeta("property", "og:type"),
-    ogUrl: getMeta("property", "og:url"),
-    twitterCard: getMeta("name", "twitter:card"),
-    twitterTitle: getMeta("name", "twitter:title"),
-    twitterDescription: getMeta("name", "twitter:description"),
-    twitterImage: getMeta("name", "twitter:image"),
-    twitterSite: getMeta("name", "twitter:site"),
-    favicon,
-    canonical: canonicalEl?.getAttribute("href") || "",
-    robots: getMeta("name", "robots"),
-    viewport: getMeta("name", "viewport"),
-    charset: doc.querySelector("meta[charset]")?.getAttribute("charset") || "",
-    allTags,
+    title: str(d.title),
+    description: str(d.description),
+    url: str(d.url),
+    language: str(d.language),
+    keywords: str(d.keywords),
+    author: str(d.author),
+    siteName: str(d["og:site_name"]),
+    ogTitle: str(d["og:title"]),
+    ogDescription: str(d["og:description"]),
+    ogImage: str(d["og:image"]),
+    ogType: str(d["og:type"]),
+    ogUrl: str(d["og:url"]),
+    ogLocale: str(d["og:locale"]),
+    twitterCard: str(d["twitter:card"]),
+    twitterTitle: str(d["twitter:title"]),
+    twitterDescription: str(d["twitter:description"]),
+    twitterImage: str(d["twitter:image"]),
+    twitterSite: str(d["twitter:site"]),
+    favicon: str(d.favicon),
+    canonical: str(d.canonical),
+    robots: str(d.robots),
+    viewport: str(d.viewport),
   };
 }

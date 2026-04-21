@@ -2,6 +2,7 @@ import type { MetaTagData } from "@/lib/metaParser";
 import { Progress } from "@/components/ui/progress";
 
 const CRITERIA = [
+  // Core (30pts) — paling kritis untuk SEO on-page
   {
     key: "title",
     label: "Title",
@@ -16,22 +17,11 @@ const CRITERIA = [
     validate: (v: string) =>
       v.length >= 50 && v.length <= 160 ? 1 : v ? 0.5 : 0,
   },
+  // Social Graph (30pts) — pengaruh besar untuk CTR & sharing
   {
-    key: "canonical",
-    label: "Canonical URL",
-    weight: 8,
-    validate: (v: string) => (v ? 1 : 0),
-  },
-  {
-    key: "robots",
-    label: "Robots",
-    weight: 5,
-    validate: (v: string) => (v ? 1 : 0),
-  },
-  {
-    key: "viewport",
-    label: "Viewport",
-    weight: 5,
+    key: "ogImage",
+    label: "og:image",
+    weight: 12,
     validate: (v: string) => (v ? 1 : 0),
   },
   {
@@ -46,16 +36,11 @@ const CRITERIA = [
     weight: 8,
     validate: (v: string) => (v ? 1 : 0),
   },
+  // Technical (24pts) — sinyal teknis ke crawler
   {
-    key: "ogImage",
-    label: "og:image",
-    weight: 12,
-    validate: (v: string) => (v ? 1 : 0),
-  },
-  {
-    key: "ogUrl",
-    label: "og:url",
-    weight: 4,
+    key: "canonical",
+    label: "Canonical URL",
+    weight: 8,
     validate: (v: string) => (v ? 1 : 0),
   },
   {
@@ -65,24 +50,62 @@ const CRITERIA = [
     validate: (v: string) => (v ? 1 : 0),
   },
   {
+    key: "robots",
+    label: "Robots",
+    weight: 5,
+    validate: (v: string) => (v ? 1 : 0),
+  },
+  {
+    key: "viewport",
+    label: "Viewport",
+    weight: 5,
+    validate: (v: string) => (v ? 1 : 0),
+  },
+  // Secondary (10pts) — pelengkap social card
+  {
+    key: "ogUrl",
+    label: "og:url",
+    weight: 3,
+    validate: (v: string) => (v ? 1 : 0),
+  },
+  {
     key: "twitterTitle",
     label: "twitter:title",
-    weight: 4,
+    weight: 3,
     validate: (v: string) => (v ? 1 : 0),
   },
   {
     key: "twitterDescription",
     label: "twitter:description",
-    weight: 4,
+    weight: 2,
     validate: (v: string) => (v ? 1 : 0),
   },
   {
     key: "twitterImage",
     label: "twitter:image",
-    weight: 4,
+    weight: 2,
     validate: (v: string) => (v ? 1 : 0),
   },
-] as const;
+  // Supplementary (6pts) — konteks tambahan
+  {
+    key: "keywords",
+    label: "Keywords",
+    weight: 3,
+    validate: (v: string) => (v ? 1 : 0),
+  },
+  {
+    key: "author",
+    label: "Author",
+    weight: 2,
+    validate: (v: string) => (v ? 1 : 0),
+  },
+  {
+    key: "ogLocale",
+    label: "og:locale",
+    weight: 1,
+    validate: (v: string) => (v ? 1 : 0),
+  },
+] as const; // total bobot: 100
 
 function getScoreColor(score: number) {
   if (score >= 80)
