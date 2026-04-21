@@ -25,10 +25,13 @@ const MetaTagReviewPage = () => {
     try {
       const result = await fetchMetaTags(url);
       setData(result);
-    } catch {
+    } catch (err) {
+      const isTimeout = err instanceof Error && err.name === "AbortError";
       toast({
-        title: "Error",
-        description: "Gagal mengambil data meta tag. Pastikan URL valid.",
+        title: isTimeout ? "Timeout" : "Error",
+        description: isTimeout
+          ? "Semua server tidak merespons. Coba beberapa saat lagi."
+          : "Gagal mengambil data meta tag. Pastikan URL valid.",
         variant: "destructive",
       });
     } finally {
