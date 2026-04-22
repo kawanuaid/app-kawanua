@@ -33,8 +33,11 @@ function buildSslItems(r: ScanResults): SslItem[] {
   return [
     {
       label: "TLS Version",
-      status: r.tlsVersion === "TLSv1.3" || r.tlsVersion === "TLSv1.2" ? "pass" : "warning",
-      value: r.tlsVersion,
+      status:
+        r.tlsVersion === "TLSv1.3" || r.tlsVersion === "TLSv1.2"
+          ? "pass"
+          : "warning",
+      value: r.tlsVersion ?? "Unknown",
       description:
         r.tlsVersion === "TLSv1.3"
           ? "TLS 1.3 detected — the most secure version. No deprecated protocols enabled."
@@ -44,9 +47,10 @@ function buildSslItems(r: ScanResults): SslItem[] {
       label: "Certificate Validity",
       status: certValidityStatus(),
       value: certValidityValue(),
-      description: cv !== null
-        ? "Certificate is currently valid and issued by a trusted CA."
-        : "Certificate validity data could not be retrieved for this domain.",
+      description:
+        cv !== null
+          ? "Certificate is currently valid and issued by a trusted CA."
+          : "Certificate validity data could not be retrieved for this domain.",
     },
     {
       label: "Certificate Authority",
@@ -73,22 +77,28 @@ function buildSslItems(r: ScanResults): SslItem[] {
     },
     {
       label: "Certificate Transparency",
-      status: r.certificateTransparency || r.advancedCertDetails?.hasSCT ? "pass" : "warning",
+      status:
+        r.certificateTransparency || r.advancedCertDetails?.hasSCT
+          ? "pass"
+          : "warning",
       value: r.certificateTransparency
         ? "SCT present"
         : r.advancedCertDetails?.hasSCT
           ? "SCT present (via advanced check)"
           : "Not logged",
-      description: r.certificateTransparency || r.advancedCertDetails?.hasSCT
-        ? "Certificate is logged in public CT logs, ensuring auditability."
-        : "Certificate transparency log not detected. This may reduce trust.",
+      description:
+        r.certificateTransparency || r.advancedCertDetails?.hasSCT
+          ? "Certificate is logged in public CT logs, ensuring auditability."
+          : "Certificate transparency log not detected. This may reduce trust.",
     },
     {
       label: "Cipher Suite",
-      status: r.cipherSuite.includes("AES_128_GCM") || r.cipherSuite.includes("AES_256_GCM")
-        ? "pass"
-        : "warning",
-      value: r.cipherSuite,
+      status:
+        r.cipherSuite?.includes("AES_128_GCM") ||
+        r.cipherSuite?.includes("AES_256_GCM")
+          ? "pass"
+          : "warning",
+      value: r.cipherSuite ?? "Unknown",
       description: "The negotiated cipher suite for this TLS connection.",
     },
     {
@@ -181,6 +191,34 @@ export default function SslSection({ data }: Props) {
           <span className="text-[10px] font-bold px-2 py-0.5 bg-red-50 text-destructive border border-red-100 rounded">
             {failCount} Fail
           </span>
+        </div>
+      </div>
+
+      {/* Progress bar */}
+      <div className="px-6 pt-4 pb-2">
+        <div className="flex items-center justify-between text-xs text-muted-foreground mb-1.5">
+          <span>Coverage</span>
+          <span className="font-semibold tabular-nums text-foreground">
+            {passCount}/{sslItems.length} configurations
+          </span>
+        </div>
+        <div className="h-2 bg-muted rounded-full overflow-hidden flex">
+          <div
+            className="h-full bg-success rounded-l-full transition-all duration-700"
+            style={{ width: `${(passCount / sslItems.length) * 100}%` }}
+          />
+          <div
+            className="h-full bg-warning transition-all duration-700"
+            style={{
+              width: `${(warnCount / sslItems.length) * 100}%`,
+            }}
+          />
+          <div
+            className="h-full bg-destructive rounded-r-full transition-all duration-700"
+            style={{
+              width: `${(failCount / sslItems.length) * 100}%`,
+            }}
+          />
         </div>
       </div>
 

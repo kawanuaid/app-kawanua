@@ -118,8 +118,8 @@ function sslItemStatus(
       return r.certificateTransparency || r.advancedCertDetails?.hasSCT ? "pass" : "warning";
 
     case "cipherSuite":
-      return r.cipherSuite.includes("AES_128_GCM") ||
-        r.cipherSuite.includes("AES_256_GCM")
+      return r.cipherSuite?.includes("AES_128_GCM") ||
+        r.cipherSuite?.includes("AES_256_GCM")
         ? "pass"
         : "warning";
 

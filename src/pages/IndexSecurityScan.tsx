@@ -37,6 +37,7 @@ import { fetchSecurityScan } from "@/lib/securityScanApi";
 import { computeSecurityScore } from "@/lib/computeScore";
 import type { VtScoreInput } from "@/lib/computeScore";
 import { SubFooter } from "@/components/Footer";
+import RecommendationsSection from "@/components/securityscan/RecommendedSection";
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 
@@ -214,7 +215,7 @@ export default function SecurityScanPage() {
 
       <div className="absolute inset-0 bg-gradient-radial pointer-events-none" />
 
-      <div className="w-full mx-auto px-6 py-8 space-y-8">
+      <div className="max-w-7xl mx-auto px-6 py-8 space-y-8">
         {/* Page Header & Reset Button */}
         {scanState === "done" && scanData && (
           <motion.header
@@ -271,7 +272,7 @@ export default function SecurityScanPage() {
                 onChange={(e) => setDomain(e.target.value)}
                 onKeyDown={handleKeyDown}
                 disabled={scanState === "loading"}
-                className="border-0 shadow-none focus-visible:ring-0 bg-transparent px-0 text-sm h-8"
+                className="border-0 shadow-none focus-visible:ring-offset-0 focus-visible:ring-0 bg-transparent px-0 text-sm h-8"
               />
             </div>
             <Button
@@ -309,6 +310,19 @@ export default function SecurityScanPage() {
             >
               <AlertTriangle size={16} className="shrink-0" />
               <span>{errorMsg}</span>
+            </motion.div>
+          )}
+          {scanState === "done" && scanData?.error && (
+            <motion.div
+              key="data-error-banner"
+              initial={{ opacity: 0, y: -8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.3 }}
+              className="flex items-center gap-3 bg-red-50 border border-red-200 text-destructive text-sm rounded-xl px-5 py-3.5"
+            >
+              <AlertTriangle size={16} className="shrink-0" />
+              <span>{scanData.error}</span>
             </motion.div>
           )}
         </AnimatePresence>
@@ -352,6 +366,10 @@ export default function SecurityScanPage() {
                   data={scanData.results.httpSecurityHeaders}
                 />
                 <SslSection data={scanData.results} />
+                <RecommendationsSection 
+                  headers={scanData.results.httpSecurityHeaders} 
+                  sslResults={scanData.results}
+                />
               </div>
 
               {/* Right sidebar */}
@@ -393,7 +411,7 @@ export default function SecurityScanPage() {
                   />
                   <MetaItem
                     label="TLS Version"
-                    value={scanData.results.tlsVersion}
+                    value={scanData.results.tlsVersion ?? "Unknown"}
                     icon={<KeyRound size={12} />}
                   />
                   <MetaItem
@@ -412,7 +430,7 @@ export default function SecurityScanPage() {
                   />
                   <MetaItem
                     label="Cipher Suite"
-                    value={scanData.results.cipherSuite}
+                    value={scanData.results.cipherSuite ?? "Unknown"}
                     icon={<Info size={12} />}
                   />
                   <MetaItem
