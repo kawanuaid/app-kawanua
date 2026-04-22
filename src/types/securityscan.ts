@@ -26,6 +26,7 @@ export interface RecommendationItem {
   impact: "Critical" | "High" | "Medium" | "Low";
   effort: "High" | "Medium" | "Low";
   reference: string;
+  source: string;
 }
 
 export interface HttpHeader {
@@ -69,13 +70,13 @@ export interface AdvancedCertDetails {
 }
 
 export interface ScanResults {
-  tlsVersion: string;
+  tlsVersion: string | null;
   certificateValidity: CertificateValidity | null;
   certificateAuthority: string | null;
   hstsEnabled: boolean;
   hstsPreload: boolean;
   certificateTransparency: boolean;
-  cipherSuite: string;
+  cipherSuite: string | null;
   ocspStapling: boolean;
   perfectForwardSecrecy: boolean;
   httpSecurityHeaders: HttpSecurityHeaders;
@@ -86,6 +87,7 @@ export interface ScanData {
   domain: string;
   scannedAt: string;
   results: ScanResults;
+  error?: string;
 }
 
 export interface ScanApiResponse {

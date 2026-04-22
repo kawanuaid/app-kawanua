@@ -22,7 +22,8 @@ const HEADER_META: Record<
   },
   xFrameOptions: {
     label: "X-Frame-Options",
-    description: "Protects against clickjacking by controlling iframe embedding.",
+    description:
+      "Protects against clickjacking by controlling iframe embedding.",
     risk: "Medium",
   },
   xContentTypeOptions: {
@@ -157,6 +158,12 @@ export default function HttpHeadersSection({ data }: Props) {
             className="h-full bg-warning transition-all duration-700"
             style={{
               width: `${(misconfiguredCount / headers.length) * 100}%`,
+            }}
+          />
+          <div
+            className="h-full bg-destructive rounded-r-full transition-all duration-700"
+            style={{
+              width: `${(missingCount / headers.length) * 100}%`,
             }}
           />
         </div>
