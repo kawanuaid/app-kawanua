@@ -29,6 +29,7 @@ import {
   Maximize,
   Star,
   ShieldEllipsis,
+  FileImage,
 } from "lucide-react";
 import { NavGroup, NavItem } from "@/types/dashboard";
 
@@ -246,6 +247,19 @@ export const data: { navMain: NavGroup[]; navSecondary: NavSecondaryItem[] } = {
           description:
             "Buatkan image placeholder untuk mockups dan prototipe aplikasi Anda dengan mudah dan cepat.",
           keywords: "image placeholder, prototype placeholder",
+        },
+        {
+          title: "Image Base64 Converter",
+          url: "/image-base64-converter",
+          icon: FileImage,
+          isHighlight: false,
+          isPromoted: false,
+          cover: "/assets/screenshots/image-base64-converter_mxfWAp2npd.png",
+          accent: "from-pink-500/20 to-fuchsia-500/10 border-pink-500/30",
+          description:
+            "Ubah gambar menjadi base64 untuk digunakan dalam web development dengan mudah dan cepat.",
+          keywords:
+            "image base64 converter, convert image to base64, base64 to image",
         },
       ],
     },

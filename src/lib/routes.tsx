@@ -32,6 +32,7 @@ import TailwindColorPage from "@/pages/IndexTailwindColor";
 import ImagePlaceholderPage from "@/pages/IndexImagePlaceholder";
 import SecurityScanPage from "@/pages/IndexSecurityScan";
 import RouteError from "@/pages/RouteError.tsx";
+import ImageBase64ConverterPage from "@/pages/IndexImageBase64Converter";
 
 // Create a lookup map for app metadata from data.ts
 const appLookup = new Map(
@@ -170,159 +171,164 @@ export const router = createBrowserRouter([
               {
                 index: true,
                 element: <DashboardPage />,
-            handle: {
-              title: "Home",
-              description:
-                "Kawanua ID Apps adalah kumpulan aplikasi untuk membantu Anda dalam berbagai hal.",
-              keywords:
-                "kawanua id, aplikasi kawanua, kumpulan aplikasi, tools, utilitas",
-            },
-          },
-          {
-            path: "image-optimizer",
-            element: <ImageOptimizerPage />,
-            handle: getMeta("image-optimizer"),
-          },
-          {
-            path: "qrcode",
-            element: <QrCodePage />,
-            handle: getMeta("qrcode"),
-          },
-          {
-            path: "passgen",
-            element: <PassGenPage />,
-            handle: getMeta("passgen"),
-          },
-          {
-            path: "urlscanner",
-            element: <UrlScannerPage />,
-            handle: getMeta("urlscanner"),
-          },
-          // {
-          //   path: "whois",
-          //   element: <WhoisPage />,
-          //   handle: getMeta("whois"),
-          // },
-          {
-            path: "passcheck",
-            element: <PassCheckPage />,
-            handle: getMeta("passcheck"),
-          },
-          {
-            path: "color-converter",
-            element: <ColorConverterPage />,
-            handle: getMeta("color-converter"),
-          },
-          {
-            path: "bmi-calculator",
-            element: <BmiCalculatorPage />,
-            handle: getMeta("bmi-calculator"),
-          },
-          {
-            path: "meta-tag-preview",
-            element: <MetaTagReviewPage />,
-            handle: getMeta("meta-tag-preview"),
-          },
-          {
-            path: "base64",
-            element: <Base64Page />,
-            handle: getMeta("base64"),
-          },
-          {
-            path: "hashgen",
-            element: <HashGenPage />,
-            handle: getMeta("hashgen"),
-          },
-          {
-            path: "uuidgen",
-            element: <UuidGenPage />,
-            handle: getMeta("uuidgen"),
-          },
-          {
-            path: "jwtdecoder",
-            element: <JwtDecoderPage />,
-            handle: getMeta("jwtdecoder"),
-          },
-          {
-            path: "pagespeed",
-            element: <PageSpeedPage />,
-            handle: getMeta("pagespeed"),
-          },
-          {
-            path: "domainlookup",
-            element: <DomainLookupPage />,
-            handle: getMeta("domainlookup"),
-          },
-          {
-            path: "timestamp",
-            element: <TimestampPage />,
-            handle: getMeta("timestamp"),
-          },
-          {
-            path: "filechecksum",
-            element: <FileChecksumPage />,
-            handle: getMeta("filechecksum"),
-          },
-          {
-            path: "jsoncsv",
-            element: <JsonCsvPage />,
-            handle: getMeta("jsoncsv"),
-          },
-          {
-            path: "regex-tester",
-            element: <RegexTesterPage />,
-            handle: getMeta("regex-tester"),
-          },
-          {
-            path: "markdown-preview",
-            element: <MarkdownPreviewPage />,
-            handle: getMeta("markdown-preview"),
-          },
-          {
-            path: "favicon-generator",
-            element: <FaviconGenPage />,
-            handle: getMeta("favicon-generator"),
-          },
-          {
-            path: "color-palette-picker",
-            element: <ColorPaletteGeneratorPage />,
-            handle: getMeta("color-palette-picker"),
-          },
-          {
-            path: "seo-metatag-generator",
-            element: <SeoMetatagGenPage />,
-            handle: getMeta("seo-metatag-generator"),
-          },
-          {
-            path: "unit-converters",
-            element: <UnitConverterPage />,
-            handle: getMeta("unit-converters"),
-          },
-          {
-            path: "tailwindcss-color-converter",
-            element: <TailwindColorPage />,
-            handle: getMeta("tailwindcss-color-converter"),
-          },
-          {
-            path: "image-placeholder",
-            element: <ImagePlaceholderPage />,
-            handle: getMeta("image-placeholder"),
-          },
-          {
-            path: "security-scan",
-            element: <SecurityScanPage />,
-            handle: getMeta("security-scan"),
-          },
-          {
-            path: "*",
-            element: <NotFound />,
-            handle: {
-              title: "404 Not Found",
-              description: "Halaman tidak ditemukan.",
-              keywords: "404, not found, halaman tidak ditemukan",
-              is404: true,
-            },
-          },
+                handle: {
+                  title: "Home",
+                  description:
+                    "Kawanua ID Apps adalah kumpulan aplikasi untuk membantu Anda dalam berbagai hal.",
+                  keywords:
+                    "kawanua id, aplikasi kawanua, kumpulan aplikasi, tools, utilitas",
+                },
+              },
+              {
+                path: "image-optimizer",
+                element: <ImageOptimizerPage />,
+                handle: getMeta("image-optimizer"),
+              },
+              {
+                path: "qrcode",
+                element: <QrCodePage />,
+                handle: getMeta("qrcode"),
+              },
+              {
+                path: "passgen",
+                element: <PassGenPage />,
+                handle: getMeta("passgen"),
+              },
+              {
+                path: "urlscanner",
+                element: <UrlScannerPage />,
+                handle: getMeta("urlscanner"),
+              },
+              // {
+              //   path: "whois",
+              //   element: <WhoisPage />,
+              //   handle: getMeta("whois"),
+              // },
+              {
+                path: "passcheck",
+                element: <PassCheckPage />,
+                handle: getMeta("passcheck"),
+              },
+              {
+                path: "color-converter",
+                element: <ColorConverterPage />,
+                handle: getMeta("color-converter"),
+              },
+              {
+                path: "bmi-calculator",
+                element: <BmiCalculatorPage />,
+                handle: getMeta("bmi-calculator"),
+              },
+              {
+                path: "meta-tag-preview",
+                element: <MetaTagReviewPage />,
+                handle: getMeta("meta-tag-preview"),
+              },
+              {
+                path: "base64",
+                element: <Base64Page />,
+                handle: getMeta("base64"),
+              },
+              {
+                path: "hashgen",
+                element: <HashGenPage />,
+                handle: getMeta("hashgen"),
+              },
+              {
+                path: "uuidgen",
+                element: <UuidGenPage />,
+                handle: getMeta("uuidgen"),
+              },
+              {
+                path: "jwtdecoder",
+                element: <JwtDecoderPage />,
+                handle: getMeta("jwtdecoder"),
+              },
+              {
+                path: "pagespeed",
+                element: <PageSpeedPage />,
+                handle: getMeta("pagespeed"),
+              },
+              {
+                path: "domainlookup",
+                element: <DomainLookupPage />,
+                handle: getMeta("domainlookup"),
+              },
+              {
+                path: "timestamp",
+                element: <TimestampPage />,
+                handle: getMeta("timestamp"),
+              },
+              {
+                path: "filechecksum",
+                element: <FileChecksumPage />,
+                handle: getMeta("filechecksum"),
+              },
+              {
+                path: "jsoncsv",
+                element: <JsonCsvPage />,
+                handle: getMeta("jsoncsv"),
+              },
+              {
+                path: "regex-tester",
+                element: <RegexTesterPage />,
+                handle: getMeta("regex-tester"),
+              },
+              {
+                path: "markdown-preview",
+                element: <MarkdownPreviewPage />,
+                handle: getMeta("markdown-preview"),
+              },
+              {
+                path: "favicon-generator",
+                element: <FaviconGenPage />,
+                handle: getMeta("favicon-generator"),
+              },
+              {
+                path: "color-palette-picker",
+                element: <ColorPaletteGeneratorPage />,
+                handle: getMeta("color-palette-picker"),
+              },
+              {
+                path: "seo-metatag-generator",
+                element: <SeoMetatagGenPage />,
+                handle: getMeta("seo-metatag-generator"),
+              },
+              {
+                path: "unit-converters",
+                element: <UnitConverterPage />,
+                handle: getMeta("unit-converters"),
+              },
+              {
+                path: "tailwindcss-color-converter",
+                element: <TailwindColorPage />,
+                handle: getMeta("tailwindcss-color-converter"),
+              },
+              {
+                path: "image-placeholder",
+                element: <ImagePlaceholderPage />,
+                handle: getMeta("image-placeholder"),
+              },
+              {
+                path: "security-scan",
+                element: <SecurityScanPage />,
+                handle: getMeta("security-scan"),
+              },
+              {
+                path: "image-base64-converter",
+                element: <ImageBase64ConverterPage />,
+                handle: getMeta("image-base64-converter"),
+              },
+              {
+                path: "*",
+                element: <NotFound />,
+                handle: {
+                  title: "404 Not Found",
+                  description: "Halaman tidak ditemukan.",
+                  keywords: "404, not found, halaman tidak ditemukan",
+                  is404: true,
+                },
+              },
             ],
           },
         ],
