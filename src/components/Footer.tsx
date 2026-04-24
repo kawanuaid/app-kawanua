@@ -1,7 +1,34 @@
+// Copyright (C) 2026 Kawanua Indo Digital
+
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Affero General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+
 export default function Footer() {
   return (
     <footer className="border-t border-border py-6 text-center text-xs text-muted-foreground">
-      <p>© {new Date().getFullYear()} Kawanua Indo Digital.</p>
+      <p>
+        © {new Date().getFullYear()}{" "}
+        <a
+          href="http://kawanua.id"
+          className="text-primary hover:text-slate-500"
+          target="_blank"
+          rel="noopener"
+        >
+          Kawanua Indo Digital
+        </a>
+        . Dirilis di bawah lisensi{" "}
+        <a
+          href="https://github.com/KawanuaDev/app-kawanua#-lisensi"
+          className="text-primary hover:text-slate-500"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          GNU Affero General Public License v3.0 (AGPL-3.0)
+        </a>
+        .
+      </p>
     </footer>
   );
 }

@@ -1,3 +1,10 @@
+// Copyright (C) 2026 Kawanua Indo Digital
+
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Affero General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+
 import React, { useState, useEffect } from "react";
 import { Badge } from "./ui/badge";
 
@@ -25,7 +32,7 @@ export default function HeaderApp({
   }, []);
 
   return (
-    <header className="border-b border-slate-200/80 bg-white/70 backdrop-blur-md sticky top-0 z-40 transition-all duration-300">
+    <header className="border-b border-slate-200/80 bg-white/70 backdrop-blur-md sticky top-0 z-9 transition-all duration-300">
       <div
         className={`mx-auto px-4 sm:px-6 transition-all duration-300 flex items-center justify-center ${
           isScrolled ? "py-2" : "py-4"
