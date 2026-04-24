@@ -37,7 +37,17 @@ import { SubFooter } from "@/components/Footer";
 
 type CodeTab = "html" | "markdown" | "css";
 
-const PRESETS = [
+type PresetDef = {
+  label: string;
+  width: number;
+  height: number;
+  icon: any;
+  text?: string;
+  bg?: string;
+  color?: string;
+};
+
+const PRESETS: PresetDef[] = [
   { label: "Avatar", width: 150, height: 150, icon: Square },
   { label: "Thumbnail", width: 300, height: 200, icon: RectangleHorizontal },
   { label: "Banner", width: 728, height: 90, icon: RectangleHorizontal },
@@ -45,9 +55,33 @@ const PRESETS = [
   { label: "Hero Mobile", width: 750, height: 1334, icon: Smartphone },
   { label: "Tablet", width: 1024, height: 768, icon: Tablet },
   { label: "Card Image", width: 400, height: 300, icon: FileImage },
-  { label: "Square MD", width: 500, height: 500, icon: Square },
-  { label: "Wide", width: 1200, height: 630, icon: RectangleHorizontal },
-  { label: "Tall", width: 400, height: 600, icon: RectangleVertical },
+  {
+    label: "Dark Mode",
+    width: 800,
+    height: 400,
+    text: "Dark Mode",
+    bg: "0f172a",
+    color: "f8fafc",
+    icon: RectangleHorizontal,
+  },
+  {
+    label: "Brand Header",
+    width: 1200,
+    height: 400,
+    text: "Kawanua Dev",
+    bg: "4f46e5",
+    color: "ffffff",
+    icon: Sparkles,
+  },
+  {
+    label: "Custom Text",
+    width: 600,
+    height: 200,
+    text: "Hello World",
+    bg: "fcd34d",
+    color: "000000",
+    icon: Code2,
+  },
   { label: "OG Image", width: 1200, height: 630, icon: Link },
   { label: "Favicon", width: 32, height: 32, icon: StarIcon },
 ];
@@ -71,22 +105,53 @@ function StarIcon(props: React.SVGProps<SVGSVGElement>) {
   );
 }
 
+function escapeHtml(unsafe: string) {
+  return unsafe
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
 function ImagePlaceholderPage() {
   const [width, setWidth] = useState(640);
   const [height, setHeight] = useState(480);
   const [text, setText] = useState("");
+  const [bg, setBg] = useState("");
+  const [color, setColor] = useState("");
   const [copiedField, setCopiedField] = useState<string | null>(null);
-  const [showCodeSnippet, setShowCodeSnippet] = useState(false);
+  const [showCodeSnippet, setShowCodeSnippet] = useState(true);
   const [codeTab, setCodeTab] = useState<CodeTab>("html");
   const [imageKey, setImageKey] = useState(0);
 
-  const displayText = text || `i.kid.or.id`;
+  const displayText = text || `Sementara`;
   const encodedText = encodeURIComponent(displayText);
 
-  const imageUrl = useMemo(
-    () => `https://i.kid.or.id/${width}/${height}/${encodedText}`,
-    [width, height, encodedText],
-  );
+  const imageUrl = useMemo(() => {
+    // Sanitize and encode all components to prevent XSS and path injection
+    const safeBg = bg ? encodeURIComponent(bg.replace(/[^a-fA-F0-9]/g, "")) : "";
+    const safeColor = color
+      ? encodeURIComponent(color.replace(/[^a-fA-F0-9]/g, ""))
+      : "";
+
+    let url = `https://i.kid.or.id/${width}/${height}/${encodedText}`;
+    if (safeBg && safeColor) {
+      url += `/${safeBg}/${safeColor}`;
+    } else if (safeBg) {
+      url += `/${safeBg}`;
+    } else if (safeColor) {
+      // Use hex regex directly if possible or encoded version
+      url += `/cccccc/${safeColor}`;
+    }
+
+    // Strict safety check for the final URL protocol and domain
+    if (!url.startsWith("https://i.kid.or.id/")) {
+      return "";
+    }
+
+    return url;
+  }, [width, height, encodedText, bg, color]);
 
   const copyToClipboard = useCallback(async (text: string, field: string) => {
     try {
@@ -107,23 +172,28 @@ function ImagePlaceholderPage() {
   }, []);
 
   const codeSnippets = useMemo(() => {
+    const escapedUrl = escapeHtml(imageUrl);
+    const escapedText = escapeHtml(displayText);
+
     switch (codeTab) {
       case "html":
-        return `<img src="${imageUrl}" alt="${displayText}" width="${width}" height="${height}" />`;
+        return `<img src="${escapedUrl}" alt="${escapedText}" width="${width}" height="${height}" />`;
       case "markdown":
-        return `![${displayText}](${imageUrl})`;
+        return `![${escapedText}](${escapedUrl})`;
       case "css":
-        return `background-image: url('${imageUrl}');
+        return `background-image: url('${escapedUrl}');
 background-size: cover;
 width: ${width}px;
 height: ${height}px;`;
     }
   }, [codeTab, imageUrl, displayText, width, height]);
 
-  const handlePresetClick = useCallback((preset: (typeof PRESETS)[number]) => {
+  const handlePresetClick = useCallback((preset: PresetDef) => {
     setWidth(preset.width);
     setHeight(preset.height);
-    setText("");
+    setText(preset.text || "");
+    setBg(preset.bg || "");
+    setColor(preset.color || "");
     setImageKey((k) => k + 1);
   }, []);
 
@@ -160,17 +230,18 @@ height: ${height}px;`;
           <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSA2MCAwIEwgMCAwIDAgNjAiIGZpbGw9Im5vbmUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS1vcGFjaXR5PSIwLjA1IiBzdHJva2Utd2lkdGg9IjEiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JpZCkiLz48L3N2Zz4=')] opacity-40" />
           <div className="relative">
             <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight mb-3">
-              Fill the gap, instantly.
+              Isi bagian yang kosong, dengan cepat.
             </h2>
             <p className="text-blue-100 text-lg max-w-2xl">
-              Generate beautiful placeholder images for your mockups and
-              prototypes. Customize dimensions, add text, and copy the URL — all
-              in seconds.
+              Buatkan placeholder image untuk mockup dan prototipe aplikasi Anda
+              dengan mudah dan cepat. Sesuaikan dimensi, tambahkan teks, dan
+              salin URL dalam hitungan detik.
             </p>
-            <div className="mt-6 inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-lg px-4 py-2.5 font-mono text-sm border border-white/20">
-              <span className="text-blue-200">URL:</span>
-              <span className="text-white font-semibold">
-                https://i.kid.or.id/{"{width}"}/{"{height}"}/{"{text}"}
+            <div className="mt-6 inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-lg px-4 py-2.5 font-mono text-sm border border-white/20 overflow-x-auto">
+              <span className="text-blue-200 shrink-0">URL:</span>
+              <span className="text-white font-semibold whitespace-nowrap">
+                https://i.kid.or.id/{"{width}"}/{"{height}"}/{"{text}"}/{"{bg}"}
+                /{"{color}"}
               </span>
             </div>
           </div>
@@ -184,10 +255,10 @@ height: ${height}px;`;
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-lg">
                   <Maximize className="h-5 w-5 text-primary" />
-                  Dimensions
+                  Dimensi
                 </CardTitle>
                 <CardDescription>
-                  Set the width and height for your placeholder image
+                  Atur lebar dan tinggi untuk gambar placeholder Anda.
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
@@ -307,16 +378,17 @@ height: ${height}px;`;
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-lg">
                   <Code2 className="h-5 w-5 text-primary" />
-                  Custom Text
+                  Teks Kustom
                 </CardTitle>
                 <CardDescription>
-                  Add custom text to display on the placeholder
+                  Tambahkan teks kustom untuk ditampilkan pada placeholder
+                  (mendukung spasi).
                 </CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="space-y-2">
                   <Input
-                    placeholder="i.kid.or.id"
+                    placeholder="Sementara"
                     value={text}
                     onChange={(e) => {
                       setText(e.target.value);
@@ -325,8 +397,116 @@ height: ${height}px;`;
                     className="w-full"
                   />
                   <p className="text-xs text-muted-foreground">
-                    Leave empty to use "i.kid.or.id" as default text
+                    Biarkan kosong untuk menggunakan "Sementara" sebagai teks
+                    default.
                   </p>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Colors Card */}
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <Sparkles className="h-5 w-5 text-primary" />
+                  Warna
+                </CardTitle>
+                <CardDescription>
+                  Sesuaikan warna background dan teks (format HEX tanpa #).
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="space-y-3">
+                    <Label htmlFor="bg-color" className="text-sm font-medium">
+                      Warna Latar Belakang
+                    </Label>
+                    <div className="flex gap-2">
+                      <Input
+                        type="color"
+                        value={
+                          bg.length === 6
+                            ? `#${bg}`
+                            : bg.length === 3
+                              ? `#${bg[0]}${bg[0]}${bg[1]}${bg[1]}${bg[2]}${bg[2]}`
+                              : "#cccccc"
+                        }
+                        onChange={(e) => {
+                          const hexValue = e.target.value
+                            .substring(1)
+                            .replace(/[^a-fA-F0-9]/g, "");
+                          setBg(hexValue);
+                          setImageKey((k) => k + 1);
+                        }}
+                        className="w-10 h-10 p-1 shrink-0 cursor-pointer rounded-md"
+                      />
+                      <div className="relative flex-1">
+                        <span className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground">
+                          #
+                        </span>
+                        <Input
+                          id="bg-color"
+                          placeholder="cccccc"
+                          value={bg}
+                          onChange={(e) => {
+                            setBg(
+                              e.target.value
+                                .replace(/[^a-fA-F0-9]/g, "")
+                                .substring(0, 6),
+                            );
+                            setImageKey((k) => k + 1);
+                          }}
+                          className="pl-7 uppercase font-mono w-full"
+                          maxLength={6}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="space-y-3">
+                    <Label htmlFor="text-color" className="text-sm font-medium">
+                      Warna Teks
+                    </Label>
+                    <div className="flex gap-2">
+                      <Input
+                        type="color"
+                        value={
+                          color.length === 6
+                            ? `#${color}`
+                            : color.length === 3
+                              ? `#${color[0]}${color[0]}${color[1]}${color[1]}${color[2]}${color[2]}`
+                              : "#000000"
+                        }
+                        onChange={(e) => {
+                          const hexValue = e.target.value
+                            .substring(1)
+                            .replace(/[^a-fA-F0-9]/g, "");
+                          setColor(hexValue);
+                          setImageKey((k) => k + 1);
+                        }}
+                        className="w-10 h-10 p-1 shrink-0 cursor-pointer rounded-md"
+                      />
+                      <div className="relative flex-1">
+                        <span className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground">
+                          #
+                        </span>
+                        <Input
+                          id="text-color"
+                          placeholder="000000"
+                          value={color}
+                          onChange={(e) => {
+                            setColor(
+                              e.target.value
+                                .replace(/[^a-fA-F0-9]/g, "")
+                                .substring(0, 6),
+                            );
+                            setImageKey((k) => k + 1);
+                          }}
+                          className="pl-7 uppercase font-mono w-full"
+                          maxLength={6}
+                        />
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </CardContent>
             </Card>
@@ -336,10 +516,10 @@ height: ${height}px;`;
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-lg">
                   <Monitor className="h-5 w-5 text-primary" />
-                  Quick Presets
+                  Preset
                 </CardTitle>
                 <CardDescription>
-                  Common image sizes for various use cases
+                  Ukuran gambar umum untuk berbagai kasus penggunaan.
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -349,7 +529,9 @@ height: ${height}px;`;
                     const isActive =
                       width === preset.width &&
                       height === preset.height &&
-                      text === "";
+                      text === (preset.text || "") &&
+                      bg === (preset.bg || "") &&
+                      color === (preset.color || "");
                     return (
                       <button
                         key={preset.label}
@@ -391,7 +573,7 @@ height: ${height}px;`;
                 <div>
                   <CardTitle className="flex items-center gap-2 text-lg">
                     <FileImage className="h-5 w-5 text-primary" />
-                    Preview
+                    Tampilan
                   </CardTitle>
                   <CardDescription className="mt-1.5">
                     {width} × {height} pixels • {displayText}
@@ -424,7 +606,7 @@ height: ${height}px;`;
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-lg">
                   <Link className="h-5 w-5 text-primary" />
-                  Generated URL
+                  URL
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
@@ -454,7 +636,7 @@ height: ${height}px;`;
                 <div className="flex items-center justify-between">
                   <CardTitle className="flex items-center gap-2 text-lg">
                     <Code2 className="h-5 w-5 text-primary" />
-                    Code Snippets
+                    Kode
                   </CardTitle>
                   <Button
                     variant="ghost"
@@ -466,7 +648,7 @@ height: ${height}px;`;
                     ) : (
                       <ChevronDown className="h-4 w-4 mr-1" />
                     )}
-                    {showCodeSnippet ? "Hide" : "Show"}
+                    {showCodeSnippet ? "Sembunyikan" : "Tampilkan"}
                   </Button>
                 </div>
               </CardHeader>
@@ -508,12 +690,12 @@ height: ${height}px;`;
                       {copiedField === "code" ? (
                         <>
                           <Check className="h-3.5 w-3.5 mr-1" />
-                          Copied!
+                          Disalin!
                         </>
                       ) : (
                         <>
                           <Copy className="h-3.5 w-3.5 mr-1" />
-                          Copy
+                          Salin
                         </>
                       )}
                     </Button>
